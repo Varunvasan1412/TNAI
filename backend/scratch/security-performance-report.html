@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RSI Backend — Security &amp; Performance Testing Report</title>
+<style>
+  @page { size: A4; margin: 20mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    color: #1a1a1a;
+    line-height: 1.5;
+    font-size: 12px;
+    margin: 0;
+  }
+  .cover {
+    padding: 60px 0 30px 0;
+    border-bottom: 3px solid #b91c1c;
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-size: 26px;
+    margin: 0 0 6px 0;
+    color: #111;
+  }
+  .cover .sub {
+    font-size: 13px;
+    color: #555;
+  }
+  .meta {
+    margin-top: 14px;
+    font-size: 11px;
+    color: #666;
+  }
+  h2 {
+    font-size: 16px;
+    color: #111;
+    border-left: 4px solid #b91c1c;
+    padding-left: 10px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 13px;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    page-break-after: avoid;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0 16px 0;
+    font-size: 11.5px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f3f4f6;
+    font-weight: 600;
+  }
+  code, .code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    background: #f4f4f4;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+  .finding {
+    border: 1px solid #e5e7eb;
+    border-left-width: 5px;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+  .critical { border-left-color: #b91c1c; background: #fef2f2; }
+  .high { border-left-color: #d97706; background: #fffbeb; }
+  .medium { border-left-color: #ca8a04; background: #fefce8; }
+  .low { border-left-color: #16a34a; background: #f0fdf4; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: #fff;
+    margin-right: 8px;
+  }
+  .badge.critical { background: #b91c1c; }
+  .badge.high { background: #d97706; }
+  .badge.medium { background: #ca8a04; }
+  .badge.low { background: #16a34a; }
+  .finding-title { font-weight: 700; font-size: 12.5px; }
+  .finding p { margin: 6px 0 0 0; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  .summary-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .status-table td:first-child { font-weight: 600; width: 30%; }
+  .status-none { color: #b91c1c; font-weight: 600; }
+  .footer-note {
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 10px;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Security &amp; Performance Testing Report</h1>
+  <div class="sub">RSI Backend — Laravel 12 Application</div>
+  <div class="meta">
+    Prepared: 2026-07-10 &nbsp;|&nbsp; Branch: dev-mohanapriya &nbsp;|&nbsp; Scope: Manual code review (no files modified)
+  </div>
+</div>
+
+<h2>1. Testing Infrastructure Status</h2>
+<p>The project currently has <strong>no active security testing or performance testing process</strong>. The findings below come from a manual source-code audit standing in for that gap.</p>
+
+<table class="status-table">
+  <tr><td>Automated tests</td><td class="status-none">Stock Laravel boilerplate only</td><td>Only <span class="code">tests/Feature/ExampleTest.php</span> and <span class="code">tests/Unit/ExampleTest.php</span> exist. Zero coverage for auth, CRM, product, or chatbot modules.</td></tr>
+  <tr><td>Static analysis / SAST</td><td class="status-none">None configured</td><td>No PHPStan/Larastan, no CI workflows (<span class="code">.github/workflows</span> absent).</td></tr>
+  <tr><td>Dependency / vulnerability scanning</td><td class="status-none">None configured</td><td>No <span class="code">composer audit</span> step or Dependabot config.</td></tr>
+  <tr><td>Load / performance testing</td><td class="status-none">None</td><td>No k6, JMeter, Blackfire, Telescope, or benchmark scripts found.</td></tr>
+  <tr><td>Frontend tests</td><td class="status-none">None</td><td><span class="code">package.json</span> only defines <span class="code">build</span>/<span class="code">dev</span> scripts.</td></tr>
+</table>
+
+<h2>2. Security Findings</h2>
+
+<div class="finding critical">
+  <div class="finding-title"><span class="badge critical">Critical</span>Broken access control on almost every module</div>
+  <p>Only the <span class="code">Users</span> and <span class="code">Super_admin</span> route groups apply <span class="code">auth:sanctum</span>. The entire <strong>CRM</strong>, <strong>Product</strong>, and <strong>Chatbot admin</strong> modules have no authentication middleware at all.</p>
+  <ul>
+    <li>Anyone unauthenticated can create/update/delete blogs, enquiries, followups, products, and categories.</li>
+    <li>Anyone can read all customer enquiry PII (name, email, phone) via <span class="code">GET /enquiry</span>.</li>
+    <li><span class="code">/admin/chat/*</span> (toggle bot status, send admin replies) is fully public.</li>
+  </ul>
+  <p><em>Files:</em> <span class="code">app/Modules/crm/Routes/api.php</span>, <span class="code">app/Modules/Product/Routes/api.php</span>, <span class="code">app/Modules/Chatbot/Routes/api.php</span></p>
+</div>
+
+<div class="finding critical">
+  <div class="finding-title"><span class="badge critical">Critical</span>Privilege escalation on user approval endpoints</div>
+  <p><span class="code">UserController</span> endpoints (<span class="code">approve-user</span>, <span class="code">reject-user</span>, <span class="code">pending-users</span>) sit behind <span class="code">auth:sanctum</span> only — no role check. Any regular, already-approved user can approve/reject other accounts and view pending users' PII.</p>
+  <p>Contrast with <span class="code">SuperAdminAuthController.php:26</span>, which correctly checks <span class="code">$user->role !== 'super_admin'</span> — that pattern is simply not applied to the user-approval flow.</p>
+  <p><em>File:</em> <span class="code">app/Modules/Roles/Users/Controllers/UserController.php</span></p>
+</div>
+
+<div class="finding high">
+  <div class="finding-title"><span class="badge high">High</span>Debug-enabled artisan endpoint exposed publicly</div>
+  <p><span class="code">GET /clear-cache</span> (no auth) runs <span class="code">route:clear</span>, <span class="code">config:clear</span>, and <span class="code">cache:clear</span> on demand — a "temporary" route left reachable by anyone, usable for low-effort denial-of-service / harassment against the live app.</p>
+  <p><em>File:</em> <span class="code">app/Modules/Product/Routes/api.php</span></p>
+</div>
+
+<div class="finding high">
+  <div class="finding-title"><span class="badge high">High</span>No rate limiting outside login</div>
+  <p>Only <span class="code">/login</span> (<span class="code">throttle:5,1</span>) and email verification (<span class="code">throttle:6,1</span>) are throttled. <span class="code">/register</span> and every CRM/Product/Chatbot endpoint have no throttle — open to brute-force, enumeration, and scraping.</p>
+</div>
+
+<div class="finding medium">
+  <div class="finding-title"><span class="badge medium">Medium</span>No database-level referential integrity or indexing</div>
+  <p>Across all 47 migrations there are essentially no foreign-key constraints or explicit indexes (e.g. <span class="code">followup.enquiry_id</span>, <span class="code">product_enquiries.product_id</span> are plain <span class="code">unsignedBigInteger</span> columns). This is both a data-integrity risk and a performance issue (see Section 3).</p>
+</div>
+
+<div class="finding medium">
+  <div class="finding-title"><span class="badge medium">Medium</span>Local secret-exposure risk</div>
+  <p>A <span class="code">.env copy</span> file exists untracked at the repo root containing a real <span class="code">APP_KEY</span> and <span class="code">APP_DEBUG=true</span>. It is not committed and not blocked by <span class="code">.gitignore</span> (which only covers <span class="code">.env</span>, <span class="code">.env.backup</span>, <span class="code">.env.production</span>) — one broad <span class="code">git add .</span> away from leaking the app key.</p>
+</div>
+
+<div class="finding low">
+  <div class="finding-title"><span class="badge low">Good practice</span>Positive observations</div>
+  <ul>
+    <li>Passwords hashed via <span class="code">Hash::make</span> (bcrypt); never stored or returned raw.</li>
+    <li>Login checks <span class="code">hasVerifiedEmail()</span> and <span class="code">status === 'active'</span> before issuing a token.</li>
+    <li>Email verification uses Laravel's signed URLs (<span class="code">middleware(['signed', ...])</span>).</li>
+    <li>Mass assignment controlled via <span class="code">$fillable</span> on all models (no <span class="code">$guarded = []</span>).</li>
+    <li>No raw SQL (<span class="code">DB::raw</span>, <span class="code">whereRaw</span>, <span class="code">DB::statement</span>) found anywhere — low SQL-injection surface.</li>
+    <li>CORS is scoped to explicit origins, not <span class="code">*</span>.</li>
+  </ul>
+</div>
+
+<h2>3. Performance Findings</h2>
+
+<div class="finding high">
+  <div class="finding-title"><span class="badge high">High</span>No pagination anywhere</div>
+  <p>Every list endpoint (blog, product, category, subcategory, enquiry, chat-session listings) uses <span class="code">-&gt;get()</span> / <span class="code">::all()</span> and returns the entire table in one response. There is not a single <span class="code">paginate()</span> call in the codebase. Response times and payload sizes will degrade sharply as data grows.</p>
+</div>
+
+<div class="finding medium">
+  <div class="finding-title"><span class="badge medium">Medium</span>Missing indexes on foreign-key-style columns</div>
+  <p>Zero <span class="code">-&gt;index()</span> / <span class="code">-&gt;foreign()</span> calls across all migrations (e.g. <span class="code">enquiry_id</span> in <span class="code">followup</span>, <span class="code">product_id</span>/<span class="code">category_id</span> on product tables). Lookups and joins on these columns will require full table scans as volume grows.</p>
+</div>
+
+<div class="finding medium">
+  <div class="finding-title"><span class="badge medium">Medium</span>No caching layer in use</div>
+  <p>No <span class="code">Cache::</span> usage anywhere in the module code despite <span class="code">config/cache.php</span> being configured. Repeated identical reads (blog listing, product catalog) hit the database on every request.</p>
+</div>
+
+<div class="finding low">
+  <div class="finding-title"><span class="badge low">Low</span>Queueing is minimal</div>
+  <p>Only one job (<span class="code">ProcessOfflineLogout</span>) implements <span class="code">ShouldQueue</span>. Other potentially slow work (image processing, notification emails) appears to run synchronously within the request.</p>
+</div>
+
+<h2>4. Summary</h2>
+<div class="summary-box">
+  <p><strong>Security testing maturity:</strong> none — no SAST, no dependency scanning, no auth/authz tests. Manual review surfaced two <strong>critical</strong> broken-access-control issues (unauthenticated CRUD across CRM/Product/Chatbot modules, and role-less user-approval endpoints) that should be treated as immediate fixes.</p>
+  <p><strong>Performance testing maturity:</strong> none — no load tests or benchmarks exist. Code-level review shows unbounded list queries and missing indexes as the top risks once data volume grows.</p>
+</div>
+
+<div class="footer-note">
+  Report generated by Claude Code via manual static review of the repository at commit <span class="code">66c2939</span> (branch <span class="code">dev-mohanapriya</span>). No project files were modified during this audit.
+</div>
+
+</body>
+</html>
