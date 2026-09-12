@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 381 585" width="381" height="585">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#141e30"/><stop offset="100%" style="stop-color:#243b55"/></linearGradient>
+    <linearGradient id="acc" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#7BBF3F"/><stop offset="100%" style="stop-color:#2E8B74"/></linearGradient>
+    <linearGradient id="copper" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#b87333"/><stop offset="100%" style="stop-color:#e8a87c"/></linearGradient>
+    <linearGradient id="alum" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#aaaaaa"/><stop offset="100%" style="stop-color:#dddddd"/></linearGradient>
+  </defs>
+  <rect width="381" height="585" fill="url(#bg)"/>
+  <!-- Copper foil roll -->
+  <ellipse cx="140" cy="170" rx="50" ry="14" fill="url(#copper)" opacity="0.9"/>
+  <rect x="90" y="170" width="100" height="90" fill="url(#copper)" opacity="0.8"/>
+  <ellipse cx="140" cy="260" rx="50" ry="14" fill="url(#copper)" opacity="0.9"/>
+  <text x="140" y="292" text-anchor="middle" font-family="Arial" font-size="13" fill="rgba(255,255,255,0.8)">Copper Foil</text>
+  <!-- Aluminium foil roll -->
+  <ellipse cx="245" cy="170" rx="50" ry="14" fill="url(#alum)" opacity="0.9"/>
+  <rect x="195" y="170" width="100" height="90" fill="url(#alum)" opacity="0.8"/>
+  <ellipse cx="245" cy="260" rx="50" ry="14" fill="url(#alum)" opacity="0.9"/>
+  <text x="245" y="292" text-anchor="middle" font-family="Arial" font-size="13" fill="rgba(255,255,255,0.8)">Aluminium Foil</text>
+  <!-- Nickel foil sheet flat -->
+  <rect x="100" y="330" width="180" height="100" rx="4" fill="rgba(150,150,180,0.5)" stroke="url(#acc)" stroke-width="2"/>
+  <line x1="100" y1="355" x2="280" y2="355" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <line x1="100" y1="380" x2="280" y2="380" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <line x1="100" y1="405" x2="280" y2="405" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="190" y="418" text-anchor="middle" font-family="Arial" font-size="13" fill="rgba(255,255,255,0.8)">Nickel Foil Sheet</text>
+  <!-- Thickness indicators -->
+  <line x1="308" y1="330" x2="308" y2="430" stroke="url(#acc)" stroke-width="1.5"/>
+  <line x1="300" y1="330" x2="316" y2="330" stroke="url(#acc)" stroke-width="1.5"/>
+  <line x1="300" y1="430" x2="316" y2="430" stroke="url(#acc)" stroke-width="1.5"/>
+  <text x="320" y="385" font-family="Arial" font-size="11" fill="rgba(123,191,63,0.8)">10–500μm</text>
+  <text x="190" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="white">Foils &amp; Current Collectors</text>
+  <text x="190" y="528" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="rgba(123,191,63,0.9)">Copper · Aluminium · Nickel · Titanium</text>
+</svg>

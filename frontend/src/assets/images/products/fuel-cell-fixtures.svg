@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 381 585" width="381" height="585">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#141e30"/><stop offset="100%" style="stop-color:#243b55"/></linearGradient>
+    <linearGradient id="acc" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#7BBF3F"/><stop offset="100%" style="stop-color:#2E8B74"/></linearGradient>
+  </defs>
+  <rect width="381" height="585" fill="url(#bg)"/>
+  <!-- End plate top -->
+  <rect x="90" y="90" width="200" height="30" rx="6" fill="url(#acc)" opacity="0.8"/>
+  <!-- Flow field plate -->
+  <rect x="90" y="128" width="200" height="50" rx="4" fill="rgba(123,191,63,0.2)" stroke="url(#acc)" stroke-width="2"/>
+  <g stroke="rgba(123,191,63,0.6)" stroke-width="2">
+    <path d="M106 138 L106 168 L170 168 L170 148 L234 148 L234 168 L274 168" fill="none"/>
+  </g>
+  <text x="190" y="160" text-anchor="middle" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.6)">Flow Field Plate</text>
+  <!-- GDL layer -->
+  <rect x="90" y="184" width="200" height="22" rx="3" fill="rgba(50,50,50,0.6)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+  <text x="190" y="199" text-anchor="middle" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.7)">GDL</text>
+  <!-- MEA membrane -->
+  <rect x="90" y="212" width="200" height="28" rx="3" fill="rgba(41,171,226,0.3)" stroke="#29ABE2" stroke-width="2"/>
+  <text x="190" y="230" text-anchor="middle" font-family="Arial" font-size="12" fill="white" font-weight="bold">MEA / Membrane</text>
+  <!-- GDL layer bottom -->
+  <rect x="90" y="246" width="200" height="22" rx="3" fill="rgba(50,50,50,0.6)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+  <text x="190" y="261" text-anchor="middle" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.7)">GDL</text>
+  <!-- Flow field plate bottom -->
+  <rect x="90" y="274" width="200" height="50" rx="4" fill="rgba(46,139,116,0.2)" stroke="url(#acc)" stroke-width="2"/>
+  <g stroke="rgba(46,139,116,0.6)" stroke-width="2">
+    <path d="M106 284 L106 314 L170 314 L170 294 L234 294 L234 314 L274 314" fill="none"/>
+  </g>
+  <text x="190" y="306" text-anchor="middle" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.6)">Flow Field Plate</text>
+  <!-- End plate bottom -->
+  <rect x="90" y="330" width="200" height="30" rx="6" fill="url(#acc)" opacity="0.8"/>
+  <!-- Bolts corners -->
+  <circle cx="105" cy="98" r="7" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <circle cx="275" cy="98" r="7" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <circle cx="105" cy="343" r="7" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <circle cx="275" cy="343" r="7" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <!-- Gas inlets -->
+  <rect x="55" y="148" width="35" height="18" rx="4" fill="#29ABE2" opacity="0.7"/>
+  <text x="72" y="160" text-anchor="middle" font-family="Arial" font-size="10" fill="white">H₂ in</text>
+  <line x1="90" y1="157" x2="55" y2="157" stroke="#29ABE2" stroke-width="2"/>
+  <rect x="290" y="148" width="35" height="18" rx="4" fill="url(#acc)" opacity="0.7"/>
+  <text x="307" y="160" text-anchor="middle" font-family="Arial" font-size="10" fill="white">O₂ in</text>
+  <line x1="290" y1="157" x2="325" y2="157" stroke="url(#acc)" stroke-width="2"/>
+  <text x="190" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="white">Fuel Cell Fixtures</text>
+  <text x="190" y="448" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="rgba(123,191,63,0.9)">PEM · PMFC · Single Cell · Stack</text>
+</svg>

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const m=require\\('@react-three/drei'\\);console.log\\('Grid' in m, 'Environment' in m, 'ContactShadows' in m, 'GridHelper' in m\\)\")"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 381 585" width="381" height="585">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#141e30"/>
+      <stop offset="100%" style="stop-color:#243b55"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7BBF3F"/>
+      <stop offset="100%" style="stop-color:#2E8B74"/>
+    </linearGradient>
+  </defs>
+  <rect width="381" height="585" fill="url(#bg)"/>
+  <rect x="0" y="0" width="381" height="585" fill="rgba(255,255,255,0.03)"/>
+  <!-- Electrode rods -->
+  <rect x="155" y="80" width="14" height="200" rx="7" fill="url(#accent)" opacity="0.9"/>
+  <rect x="183" y="100" width="14" height="180" rx="7" fill="url(#accent)" opacity="0.7"/>
+  <rect x="211" y="90" width="14" height="190" rx="7" fill="url(#accent)" opacity="0.8"/>
+  <!-- Tips -->
+  <ellipse cx="162" cy="285" rx="10" ry="14" fill="#7BBF3F"/>
+  <ellipse cx="190" cy="283" rx="10" ry="14" fill="#2E8B74"/>
+  <ellipse cx="218" cy="284" rx="10" ry="14" fill="#7BBF3F"/>
+  <!-- Connecting wires -->
+  <line x1="162" y1="80" x2="162" y2="60" stroke="#7BBF3F" stroke-width="3"/>
+  <line x1="190" y1="100" x2="190" y2="60" stroke="#2E8B74" stroke-width="3"/>
+  <line x1="218" y1="90" x2="218" y2="60" stroke="#7BBF3F" stroke-width="3"/>
+  <rect x="140" y="50" width="100" height="16" rx="4" fill="url(#accent)" opacity="0.6"/>
+  <!-- Beaker outline -->
+  <path d="M120 330 L130 460 Q190 490 250 460 L260 330 Z" fill="none" stroke="url(#accent)" stroke-width="3" opacity="0.5"/>
+  <ellipse cx="190" cy="330" rx="70" ry="12" fill="none" stroke="url(#accent)" stroke-width="3" opacity="0.5"/>
+  <!-- Liquid -->
+  <path d="M134 400 Q190 415 246 400 L250 460 Q190 490 130 460 Z" fill="rgba(46,139,116,0.2)"/>
+  <!-- Text -->
+  <text x="190" y="530" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="white">Working Electrodes</text>
+  <text x="190" y="558" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="rgba(123,191,63,0.9)">Glassy Carbon · Gold · Platinum</text>
+</svg>

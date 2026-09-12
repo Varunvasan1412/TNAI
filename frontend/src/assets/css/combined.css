@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+
+@import './animate.min.css';
+@import './bootstrap.min.css';
+@import './custom-animate.css'; 
+@import './flaticon.css';
+@import './font-awesome-all.css';
+@import './jarallax.css';
+@import './nice-select.css';
+
+
+@import './module-css/about.css';
+@import './module-css/chat-popup.css';
+@import './module-css/blog.css';
+@import './module-css/brand.css';
+@import './module-css/contact.css';
+@import './module-css/counter.css';
+@import './module-css/error.css';
+@import './module-css/faq.css';
+@import './module-css/feature.css';
+@import './module-css/footer.css';
+@import './module-css/page-header.css';
+@import './module-css/pricing.css';
+@import './module-css/process.css';
+@import './module-css/project.css';
+@import './module-css/service.css';
+@import './module-css/shop.css';
+@import './module-css/slider.css';
+@import './module-css/sliding-text.css';
+@import './module-css/team.css';
+@import './module-css/testimonial.css';
+@import './module-css/video.css';
+@import './module-css/why-choose.css';
+
+
+
+@import './style.css';
+@import './responsive.css';

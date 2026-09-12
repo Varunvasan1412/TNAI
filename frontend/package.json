@@ -1,0 +1,53 @@
+{
+  "name": "the-wall-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ramonak/react-progress-bar": "^5.4.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@types/three": "^0.184.1",
+    "framer-motion": "^12.34.3",
+    "jarallax": "^2.2.1",
+    "leaflet": "^1.9.4",
+    "react": "^19.2.0",
+    "react-countup": "^6.5.3",
+    "react-dom": "^19.2.0",
+    "react-fast-marquee": "^1.6.5",
+    "react-icons": "^5.7.0",
+    "react-intersection-observer": "^10.0.3",
+    "react-leaflet": "^5.0.0",
+    "react-router": "^7.11.0",
+    "react-scroll": "^1.9.3",
+    "sweetalert2": "^11.26.20",
+    "swiper": "^12.1.2",
+    "three": "^0.184.0",
+    "yet-another-react-lightbox": "^3.29.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-scroll": "^1.8.10",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.6.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vite": "^7.3.1"
+  }
+}

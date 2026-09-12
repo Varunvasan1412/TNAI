@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 381 585" width="381" height="585">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#141e30"/><stop offset="100%" style="stop-color:#243b55"/></linearGradient>
+    <linearGradient id="acc" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#7BBF3F"/><stop offset="100%" style="stop-color:#2E8B74"/></linearGradient>
+  </defs>
+  <rect width="381" height="585" fill="url(#bg)"/>
+  <!-- Carbon cloth woven texture -->
+  <rect x="75" y="90" width="230" height="160" rx="8" fill="rgba(15,15,15,0.9)" stroke="url(#acc)" stroke-width="2.5"/>
+  <text x="190" y="115" text-anchor="middle" font-family="Arial" font-size="13" fill="rgba(123,191,63,0.9)" font-weight="bold">Carbon Cloth</text>
+  <g stroke="rgba(123,191,63,0.5)" stroke-width="3" stroke-linecap="round">
+    <line x1="90" y1="130" x2="295" y2="130"/>
+    <line x1="90" y1="145" x2="295" y2="145"/>
+    <line x1="90" y1="160" x2="295" y2="160"/>
+    <line x1="90" y1="175" x2="295" y2="175"/>
+    <line x1="90" y1="190" x2="295" y2="190"/>
+    <line x1="90" y1="205" x2="295" y2="205"/>
+    <line x1="90" y1="220" x2="295" y2="220"/>
+    <line x1="90" y1="235" x2="295" y2="235"/>
+  </g>
+  <g stroke="rgba(46,139,116,0.5)" stroke-width="3" stroke-linecap="round">
+    <line x1="105" y1="120" x2="105" y2="245"/>
+    <line x1="120" y1="120" x2="120" y2="245"/>
+    <line x1="135" y1="120" x2="135" y2="245"/>
+    <line x1="150" y1="120" x2="150" y2="245"/>
+    <line x1="165" y1="120" x2="165" y2="245"/>
+    <line x1="180" y1="120" x2="180" y2="245"/>
+    <line x1="195" y1="120" x2="195" y2="245"/>
+    <line x1="210" y1="120" x2="210" y2="245"/>
+    <line x1="225" y1="120" x2="225" y2="245"/>
+    <line x1="240" y1="120" x2="240" y2="245"/>
+    <line x1="255" y1="120" x2="255" y2="245"/>
+    <line x1="270" y1="120" x2="270" y2="245"/>
+    <line x1="285" y1="120" x2="285" y2="245"/>
+  </g>
+  <!-- Carbon paper sheet below -->
+  <rect x="75" y="275" width="230" height="130" rx="8" fill="rgba(10,10,10,0.95)" stroke="url(#acc)" stroke-width="2.5"/>
+  <text x="190" y="300" text-anchor="middle" font-family="Arial" font-size="13" fill="rgba(123,191,63,0.9)" font-weight="bold">Carbon Paper</text>
+  <g stroke="rgba(80,80,80,0.6)" stroke-width="1">
+    <line x1="85" y1="315" x2="295" y2="315"/>
+    <line x1="85" y1="328" x2="295" y2="328"/>
+    <line x1="85" y1="341" x2="295" y2="341"/>
+    <line x1="85" y1="354" x2="295" y2="354"/>
+    <line x1="85" y1="367" x2="295" y2="367"/>
+    <line x1="85" y1="380" x2="295" y2="380"/>
+    <line x1="100" y1="308" x2="100" y2="400"/>
+    <line x1="130" y1="308" x2="130" y2="400"/>
+    <line x1="160" y1="308" x2="160" y2="400"/>
+    <line x1="190" y1="308" x2="190" y2="400"/>
+    <line x1="220" y1="308" x2="220" y2="400"/>
+    <line x1="250" y1="308" x2="250" y2="400"/>
+    <line x1="280" y1="308" x2="280" y2="400"/>
+  </g>
+  <text x="190" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="white">Carbon Cloth &amp; Paper</text>
+  <text x="190" y="528" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="rgba(123,191,63,0.9)">High conductivity · Fuel cell grade</text>
+</svg>
