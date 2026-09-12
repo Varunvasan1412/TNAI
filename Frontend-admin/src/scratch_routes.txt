@@ -1,0 +1,65 @@
+
+import Events from '../pages/Events';
+import EventForm from '../pages/EventForm';
+import EventView from '../pages/EventView';
+
+
+  <Route key="crm-events" path="/crm/events" element={<W><Events /></W>} />
+  <Route key="crm-events-add" path="/crm/events/add" element={<W><EventForm /></W>} />
+  <Route key="crm-events-edit" path="/crm/events/edit/:id" element={<W><EventForm /></W>} />
+  <Route key="crm-events-view" path="/crm/events/view/:id" element={<W><EventView /></W>} />
+
+
+import Institutions from '../pages/Institutions';
+import InstitutionForm from '../pages/InstitutionForm';
+import InstitutionView from '../pages/InstitutionView';
+
+
+  <Route key="crm-institutions" path="/crm/institutions" element={<W><Institutions /></W>} />
+  <Route key="crm-institutions-add" path="/crm/institutions/add" element={<W><InstitutionForm /></W>} />
+  <Route key="crm-institutions-edit" path="/crm/institutions/edit/:id" element={<W><InstitutionForm /></W>} />
+  <Route key="crm-institutions-view" path="/crm/institutions/view/:id" element={<W><InstitutionView /></W>} />
+
+
+import NewsCirculars from '../pages/NewsCirculars';
+import NewsCircularForm from '../pages/NewsCircularForm';
+import NewsCircularView from '../pages/NewsCircularView';
+
+
+  <Route key="crm-news-circulars" path="/crm/news-circulars" element={<W><NewsCirculars /></W>} />
+  <Route key="crm-news-circulars-add" path="/crm/news-circulars/add" element={<W><NewsCircularForm /></W>} />
+  <Route key="crm-news-circulars-edit" path="/crm/news-circulars/edit/:id" element={<W><NewsCircularForm /></W>} />
+  <Route key="crm-news-circulars-view" path="/crm/news-circulars/view/:id" element={<W><NewsCircularView /></W>} />
+
+
+import Newsletters from '../pages/Newsletters';
+import NewsletterForm from '../pages/NewsletterForm';
+import NewsletterView from '../pages/NewsletterView';
+
+
+  <Route key="crm-newsletter" path="/crm/newsletter" element={<W><Newsletters /></W>} />
+  <Route key="crm-newsletter-add" path="/crm/newsletter/add" element={<W><NewsletterForm /></W>} />
+  <Route key="crm-newsletter-edit" path="/crm/newsletter/edit/:id" element={<W><NewsletterForm /></W>} />
+  <Route key="crm-newsletter-view" path="/crm/newsletter/view/:id" element={<W><NewsletterView /></W>} />
+
+
+import SnaiArticles from '../pages/SnaiArticles';
+import SnaiArticleForm from '../pages/SnaiArticleForm';
+import SnaiArticleView from '../pages/SnaiArticleView';
+
+
+  <Route key="crm-snai-articles" path="/crm/snai-articles" element={<W><SnaiArticles /></W>} />
+  <Route key="crm-snai-articles-add" path="/crm/snai-articles/add" element={<W><SnaiArticleForm /></W>} />
+  <Route key="crm-snai-articles-edit" path="/crm/snai-articles/edit/:id" element={<W><SnaiArticleForm /></W>} />
+  <Route key="crm-snai-articles-view" path="/crm/snai-articles/view/:id" element={<W><SnaiArticleView /></W>} />
+
+
+import Statistics from '../pages/Statistics';
+import StatisticForm from '../pages/StatisticForm';
+import StatisticView from '../pages/StatisticView';
+
+
+  <Route key="crm-statistics" path="/crm/statistics" element={<W><Statistics /></W>} />
+  <Route key="crm-statistics-add" path="/crm/statistics/add" element={<W><StatisticForm /></W>} />
+  <Route key="crm-statistics-edit" path="/crm/statistics/edit/:id" element={<W><StatisticForm /></W>} />
+  <Route key="crm-statistics-view" path="/crm/statistics/view/:id" element={<W><StatisticView /></W>} />

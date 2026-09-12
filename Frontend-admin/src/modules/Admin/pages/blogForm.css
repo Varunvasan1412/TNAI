@@ -1,0 +1,159 @@
+.custom-quill .ql-toolbar {
+  border: 1px solid rgba(229, 231, 235, 0.7);
+  border-bottom: none;
+  border-radius: 16px 16px 0 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+
+.custom-quill .ql-container {
+  border: 1px solid rgba(229, 231, 235, 0.7);
+  border-radius: 0 0 16px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  min-height: 250px;
+  transition: all 0.2s ease;
+}
+
+.custom-quill .ql-editor {
+  min-height: 250px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  padding: 16px;
+}
+
+.custom-quill .ql-editor::placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Focus State */
+.custom-quill:focus-within .ql-toolbar {
+  border-color: rgba(49, 151, 96, 0.5);
+}
+
+.custom-quill:focus-within .ql-container {
+  border-color: rgba(49, 151, 96, 0.5);
+  box-shadow: 0 0 0 3px rgba(49, 151, 96, 0.18);
+}
+
+/* Toolbar Buttons */
+.custom-quill .ql-toolbar button {
+  border-radius: 8px;
+  transition: all 0.18s ease;
+}
+
+.custom-quill .ql-toolbar button:hover {
+  background: rgba(49, 151, 96, 0.08);
+}
+
+.custom-quill .ql-toolbar button:hover .ql-stroke {
+  stroke: #319760;
+}
+
+.custom-quill .ql-toolbar button:hover .ql-fill {
+  fill: #319760;
+}
+
+.custom-quill .ql-toolbar button.ql-active {
+  background: rgba(49, 151, 96, 0.12);
+}
+
+.custom-quill .ql-toolbar button.ql-active .ql-stroke {
+  stroke: #319760;
+}
+
+.custom-quill .ql-toolbar button.ql-active .ql-fill {
+  fill: #319760;
+}
+
+/* Dropdown */
+.custom-quill .ql-picker {
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.custom-quill .ql-picker-label:hover {
+  color: #319760;
+}
+
+.custom-quill .ql-picker-item:hover {
+  color: #319760;
+}
+
+/* Remove default ugly outline */
+.custom-quill .ql-toolbar button:focus,
+.custom-quill .ql-picker-label:focus {
+  outline: none;
+}
+
+/* Dark Mode */
+.dark .custom-quill .ql-toolbar {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(71, 85, 105, 0.5);
+}
+
+.dark .custom-quill .ql-container {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(71, 85, 105, 0.5);
+}
+
+.dark .custom-quill .ql-editor {
+  color: #e2e8f0;
+}
+
+.dark .custom-quill .ql-editor::placeholder {
+  color: #94a3b8;
+}
+
+.dark .custom-quill .ql-picker {
+  color: #cbd5e1;
+}
+
+.dark .custom-quill .ql-stroke {
+  stroke: #cbd5e1;
+}
+
+.dark .custom-quill .ql-fill {
+  fill: #cbd5e1;
+}
+
+/* Jodit Theme overrides */
+.jodit-container.custom-jodit {
+  border: 1px solid rgba(229, 231, 235, 0.7) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.jodit-container.custom-jodit .jodit-toolbar__box {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.7) !important;
+}
+.jodit-container.custom-jodit .jodit-wysiwyg,
+.jodit-container.custom-jodit .jodit-workplace {
+  min-height: 250px !important;
+  font-size: 13px !important;
+  font-family: inherit !important;
+  color: #374151 !important;
+  background: transparent !important;
+  overflow-x: auto !important;
+}
+.jodit-container.custom-jodit.jodit_focus {
+  border-color: rgba(49, 151, 96, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(49, 151, 96, 0.18) !important;
+}
+.dark .jodit-container.custom-jodit {
+  background: rgba(30, 41, 59, 0.6) !important;
+  border-color: rgba(71, 85, 105, 0.5) !important;
+}
+.dark .jodit-container.custom-jodit .jodit-toolbar__box {
+  border-bottom-color: rgba(71, 85, 105, 0.5) !important;
+}
+.dark .jodit-container.custom-jodit .jodit-wysiwyg {
+  color: #e2e8f0 !important;
+}
