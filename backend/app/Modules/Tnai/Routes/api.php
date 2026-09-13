@@ -94,6 +94,16 @@ Route::get('/events/{id}', [EventController::class, 'show']);
     Route::patch('/admin/gallery-images/{id}/approve', [\App\Modules\Tnai\Controllers\GalleryImageController::class, 'approve']);
     Route::patch('/admin/gallery-images/{id}/reject', [\App\Modules\Tnai\Controllers\GalleryImageController::class, 'reject']);
 
+    // 9. Downloads
+    Route::get('/admin/downloads', [\App\Modules\Tnai\Controllers\DownloadController::class, 'index']);
+    Route::get('/admin/downloads/{id}', [\App\Modules\Tnai\Controllers\DownloadController::class, 'show']);
+    Route::post('/admin/downloads', [\App\Modules\Tnai\Controllers\DownloadController::class, 'store']);
+    Route::put('/admin/downloads/{id}', [\App\Modules\Tnai\Controllers\DownloadController::class, 'update']);
+    Route::delete('/admin/downloads/{id}', [\App\Modules\Tnai\Controllers\DownloadController::class, 'destroy']);
+    Route::patch('/admin/downloads/{id}/submit', [\App\Modules\Tnai\Controllers\DownloadController::class, 'submitForApproval']);
+    Route::patch('/admin/downloads/{id}/approve', [\App\Modules\Tnai\Controllers\DownloadController::class, 'approve']);
+    Route::patch('/admin/downloads/{id}/reject', [\App\Modules\Tnai\Controllers\DownloadController::class, 'reject']);
+
     Route::get('/admin/newsletters/{id}', [\App\Modules\Tnai\Controllers\NewsletterController::class, 'show']);
     Route::post('/admin/newsletters', [\App\Modules\Tnai\Controllers\NewsletterController::class, 'store']);
     Route::put('/admin/newsletters/{id}', [\App\Modules\Tnai\Controllers\NewsletterController::class, 'update']);
@@ -111,5 +121,72 @@ Route::get('/events/{id}', [EventController::class, 'show']);
     Route::patch('/admin/news-circulars/{id}/submit', [\App\Modules\Tnai\Controllers\NewsCircularController::class, 'submitForApproval']);
     Route::patch('/admin/news-circulars/{id}/approve', [\App\Modules\Tnai\Controllers\NewsCircularController::class, 'approve']);
     Route::patch('/admin/news-circulars/{id}/reject', [\App\Modules\Tnai\Controllers\NewsCircularController::class, 'reject']);
+
+    // 10. Voice Your Concern (Admin Management)
+    Route::post('/admin/concerns', [\App\Modules\Tnai\Controllers\ConcernController::class, 'store']);
+    Route::get('/admin/concerns', [\App\Modules\Tnai\Controllers\ConcernController::class, 'index']);
+    Route::get('/admin/concerns/{id}', [\App\Modules\Tnai\Controllers\ConcernController::class, 'show']);
+    Route::patch('/admin/concerns/{id}/resolve', [\App\Modules\Tnai\Controllers\ConcernController::class, 'updateStatus']);
+    Route::delete('/admin/concerns/{id}', [\App\Modules\Tnai\Controllers\ConcernController::class, 'destroy']);
+
+    // 11. Our Activities
+    Route::get('/admin/activities', [\App\Modules\Tnai\Controllers\ActivityController::class, 'index']);
+    Route::get('/admin/activities/{id}', [\App\Modules\Tnai\Controllers\ActivityController::class, 'show']);
+    Route::post('/admin/activities', [\App\Modules\Tnai\Controllers\ActivityController::class, 'store']);
+    Route::put('/admin/activities/{id}', [\App\Modules\Tnai\Controllers\ActivityController::class, 'update']);
+    Route::delete('/admin/activities/{id}', [\App\Modules\Tnai\Controllers\ActivityController::class, 'destroy']);
+    Route::patch('/admin/activities/{id}/submit', [\App\Modules\Tnai\Controllers\ActivityController::class, 'submitForApproval']);
+    Route::patch('/admin/activities/{id}/approve', [\App\Modules\Tnai\Controllers\ActivityController::class, 'approve']);
+    Route::patch('/admin/activities/{id}/reject', [\App\Modules\Tnai\Controllers\ActivityController::class, 'reject']);
+
+    // 12. SNA Units
+    Route::get('/admin/sna-units', [\App\Modules\Tnai\Controllers\SnaUnitController::class, 'index']);
+    Route::get('/admin/sna-units/{id}', [\App\Modules\Tnai\Controllers\SnaUnitController::class, 'show']);
+    Route::post('/admin/sna-units', [\App\Modules\Tnai\Controllers\SnaUnitController::class, 'store']);
+    Route::put('/admin/sna-units/{id}', [\App\Modules\Tnai\Controllers\SnaUnitController::class, 'update']);
+    Route::delete('/admin/sna-units/{id}', [\App\Modules\Tnai\Controllers\SnaUnitController::class, 'destroy']);
+    Route::patch('/admin/sna-units/{id}/submit', [\App\Modules\Tnai\Controllers\SnaUnitController::class, 'submitForApproval']);
+    Route::patch('/admin/sna-units/{id}/approve', [\App\Modules\Tnai\Controllers\SnaUnitController::class, 'approve']);
+    Route::patch('/admin/sna-units/{id}/reject', [\App\Modules\Tnai\Controllers\SnaUnitController::class, 'reject']);
+
+    // 13. TNAI Units
+    Route::get('/admin/tnai-units', [\App\Modules\Tnai\Controllers\TnaiUnitController::class, 'index']);
+    Route::get('/admin/tnai-units/{id}', [\App\Modules\Tnai\Controllers\TnaiUnitController::class, 'show']);
+    Route::post('/admin/tnai-units', [\App\Modules\Tnai\Controllers\TnaiUnitController::class, 'store']);
+    Route::put('/admin/tnai-units/{id}', [\App\Modules\Tnai\Controllers\TnaiUnitController::class, 'update']);
+    Route::delete('/admin/tnai-units/{id}', [\App\Modules\Tnai\Controllers\TnaiUnitController::class, 'destroy']);
+    Route::patch('/admin/tnai-units/{id}/submit', [\App\Modules\Tnai\Controllers\TnaiUnitController::class, 'submitForApproval']);
+    Route::patch('/admin/tnai-units/{id}/approve', [\App\Modules\Tnai\Controllers\TnaiUnitController::class, 'approve']);
+    Route::patch('/admin/tnai-units/{id}/reject', [\App\Modules\Tnai\Controllers\TnaiUnitController::class, 'reject']);
+
+    // 14. Our Impacts
+    Route::get('/admin/impacts', [\App\Modules\Tnai\Controllers\ImpactController::class, 'index']);
+    Route::get('/admin/impacts/{id}', [\App\Modules\Tnai\Controllers\ImpactController::class, 'show']);
+    Route::post('/admin/impacts', [\App\Modules\Tnai\Controllers\ImpactController::class, 'store']);
+    Route::put('/admin/impacts/{id}', [\App\Modules\Tnai\Controllers\ImpactController::class, 'update']);
+    Route::delete('/admin/impacts/{id}', [\App\Modules\Tnai\Controllers\ImpactController::class, 'destroy']);
+    Route::patch('/admin/impacts/{id}/submit', [\App\Modules\Tnai\Controllers\ImpactController::class, 'submitForApproval']);
+    Route::patch('/admin/impacts/{id}/approve', [\App\Modules\Tnai\Controllers\ImpactController::class, 'approve']);
+    Route::patch('/admin/impacts/{id}/reject', [\App\Modules\Tnai\Controllers\ImpactController::class, 'reject']);
+
+    // 15. Student Details
+    Route::get('/admin/student-details', [\App\Modules\Tnai\Controllers\StudentDetailController::class, 'index']);
+    Route::get('/admin/student-details/{id}', [\App\Modules\Tnai\Controllers\StudentDetailController::class, 'show']);
+    Route::post('/admin/student-details', [\App\Modules\Tnai\Controllers\StudentDetailController::class, 'store']);
+    Route::put('/admin/student-details/{id}', [\App\Modules\Tnai\Controllers\StudentDetailController::class, 'update']);
+    Route::delete('/admin/student-details/{id}', [\App\Modules\Tnai\Controllers\StudentDetailController::class, 'destroy']);
+    Route::patch('/admin/student-details/{id}/submit', [\App\Modules\Tnai\Controllers\StudentDetailController::class, 'submitForApproval']);
+    Route::patch('/admin/student-details/{id}/approve', [\App\Modules\Tnai\Controllers\StudentDetailController::class, 'approve']);
+    Route::patch('/admin/student-details/{id}/reject', [\App\Modules\Tnai\Controllers\StudentDetailController::class, 'reject']);
+
+    // 16. College SNA Unit Office Bearers
+    Route::get('/admin/office-bearers', [\App\Modules\Tnai\Controllers\OfficeBearerController::class, 'index']);
+    Route::get('/admin/office-bearers/{id}', [\App\Modules\Tnai\Controllers\OfficeBearerController::class, 'show']);
+    Route::post('/admin/office-bearers', [\App\Modules\Tnai\Controllers\OfficeBearerController::class, 'store']);
+    Route::put('/admin/office-bearers/{id}', [\App\Modules\Tnai\Controllers\OfficeBearerController::class, 'update']);
+    Route::delete('/admin/office-bearers/{id}', [\App\Modules\Tnai\Controllers\OfficeBearerController::class, 'destroy']);
+    Route::patch('/admin/office-bearers/{id}/submit', [\App\Modules\Tnai\Controllers\OfficeBearerController::class, 'submitForApproval']);
+    Route::patch('/admin/office-bearers/{id}/approve', [\App\Modules\Tnai\Controllers\OfficeBearerController::class, 'approve']);
+    Route::patch('/admin/office-bearers/{id}/reject', [\App\Modules\Tnai\Controllers\OfficeBearerController::class, 'reject']);
 
 // });
