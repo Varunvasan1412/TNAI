@@ -15,13 +15,12 @@ Route::get('/clear-cache', function () {
 use App\Modules\Tnai\Controllers\ExecutiveMemberController;
 use App\Modules\Tnai\Controllers\EventController;
 
-// --- PUBLIC ROUTES (No Auth Required) ---
-// Only returns approved & active items
+// --- ADMIN PUBLIC ROUTES (Temporary) ---
 Route::get('/executive-members', [ExecutiveMemberController::class, 'index']);
 Route::get('/executive-members/{id}', [ExecutiveMemberController::class, 'show']);
 
-Route::get('/events', [EventController::class, 'index']);
-Route::get('/events/{id}', [EventController::class, 'show']);
+Route::get('/admin/events', [EventController::class, 'index']);
+Route::get('/admin/events/{id}', [EventController::class, 'show']);
 
 // Protected routes (Maker-Checker Workflow) - TEMPORARILY UNPROTECTED FOR TESTING
 // Route::middleware(['auth:sanctum'])->group(function () {

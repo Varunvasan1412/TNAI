@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSI CRM - API Backend Status</title>
+    <title>TNAI- API Backend Status</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #10b981;
+            --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(255, 255, 255, 0.5);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent: #02a8f6ff;
             --error-bg: rgba(239, 68, 68, 0.1);
             --error-border: rgba(239, 68, 68, 0.3);
-            --error-text: #fca5a5;
+            --error-text: #b91c1c;
         }
 
         * {
@@ -48,7 +48,7 @@
         .blob-1 {
             width: 400px;
             height: 400px;
-            background: #4f46e5;
+            background: #7dd3fc;
             top: -100px;
             left: -100px;
             border-radius: 50%;
@@ -56,7 +56,7 @@
         .blob-2 {
             width: 300px;
             height: 300px;
-            background: #10b981;
+            background: #0ea5e9;
             bottom: -50px;
             right: -50px;
             border-radius: 50%;
@@ -92,7 +92,7 @@
         .icon-wrapper {
             width: 80px;
             height: 80px;
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(14, 165, 233, 0.1);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -141,7 +141,7 @@
         .info-pill {
             display: inline-flex;
             align-items: center;
-            background: rgba(255,255,255,0.05);
+            background: rgba(14, 165, 233, 0.05);
             padding: 8px 16px;
             border-radius: 100px;
             font-size: 14px;
@@ -206,7 +206,7 @@
         </div>
         
         <h1>API Backend is Online</h1>
-        <p class="subtitle">The RSI CRM server is running smoothly and actively listening for requests from your frontend application.</p>
+        <p class="subtitle">The TNAI server is running smoothly and actively listening for requests from your frontend application.</p>
         
         <div class="info-pill">
             Environment: <span>{{ env('APP_ENV', 'Production') }}</span>

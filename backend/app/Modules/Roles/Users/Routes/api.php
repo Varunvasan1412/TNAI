@@ -12,6 +12,11 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/invitations/resend-otp', [\App\Modules\Roles\Users\Controllers\InvitationController::class, 'resendOtp']);
 Route::post('/invitations/verify-otp', [\App\Modules\Roles\Users\Controllers\InvitationController::class, 'verifyOtp']);
 
+// Password Reset Routes
+Route::post('/forgot-password', [\App\Modules\Roles\Users\Controllers\PasswordResetController::class, 'forgotPassword']);
+Route::post('/verify-reset-otp', [\App\Modules\Roles\Users\Controllers\PasswordResetController::class, 'verifyResetOtp']);
+Route::post('/reset-password', [\App\Modules\Roles\Users\Controllers\PasswordResetController::class, 'resetPassword']);
+
 // Email Verification Route
 Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)
     ->middleware(['signed', 'throttle:6,1'])

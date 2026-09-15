@@ -48,12 +48,20 @@ class ModuleServiceProvider extends ServiceProvider
                     $this->loadViewsFrom($viewsPath, $moduleName);
                 }
 
-                // Load API Routes
-                   $apiRoutesPath = $directory . '/Routes/api.php';
+// Load API Routes
+$apiRoutesPath = $directory . '/Routes/api.php';
 if (File::exists($apiRoutesPath)) {
     Route::prefix($newPrefix)
         ->middleware('api')
         ->group($apiRoutesPath);
+}
+
+// Load Website API Routes (for the frontend website)
+$websiteRoutesPath = $directory . '/Routes/website.php';
+if (File::exists($websiteRoutesPath)) {
+    Route::prefix($newPrefix . '/web')
+        ->middleware('api')
+        ->group($websiteRoutesPath);
 }
 
 // Image delete route without module prefix
