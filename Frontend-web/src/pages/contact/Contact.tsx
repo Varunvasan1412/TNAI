@@ -73,10 +73,29 @@ const Contact: React.FC = () => {
 
         setLoading(true);
         try {
-            // Mock submission for now
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            Swal.fire({ icon: 'success', title: 'Message Sent!', text: 'Thank you for reaching out. We will get back to you shortly.', confirmButtonColor: '#0E49FC' });
-            setForm({ name: '', email: '', phone: '', subject: '', message: '', agreePrivacy: false });
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/crm/enquiry`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: form.name,
+                    email: form.email,
+                    phone: form.phone,
+                    subject: form.subject,
+                    message: form.message,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.status) {
+                Swal.fire({ icon: 'success', title: 'Message Sent!', text: data.message || 'Thank you for reaching out. We will get back to you shortly.', confirmButtonColor: '#0E49FC' });
+                setForm({ name: '', email: '', phone: '', subject: '', message: '', agreePrivacy: false });
+            } else {
+                Swal.fire({ icon: 'error', title: 'Submission Failed', text: data.message || 'Something went wrong. Please try again later.', confirmButtonColor: '#EF4444' });
+            }
         } catch (error) {
             Swal.fire({ icon: 'error', title: 'Network Error', text: 'Unable to connect to the server. Please try again later.', confirmButtonColor: '#EF4444' });
         } finally {
