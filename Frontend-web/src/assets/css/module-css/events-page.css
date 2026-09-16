@@ -276,9 +276,12 @@
 
 .why-title {
     color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     margin-bottom: 25px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.5px;
 }
 
 .why-features {
@@ -302,9 +305,11 @@
     border-left: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.why-feature-item svg,
-.why-feature-item i {
-    font-size: 32px;
+.why-feature-icon {
+    width: auto;
+    height: 80px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .why-feature-text {
@@ -340,8 +345,18 @@
 }
 
 @media (max-width: 575px) {
+    .why-title {
+        text-align: center;
+    }
+
     .why-feature-item {
         min-width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .why-feature-text {
+        text-align: center;
     }
 }
 
@@ -397,42 +412,55 @@
 }
 
 /* Gallery Grid */
-.past-events-gallery {
+.past-events-grid {
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1.5fr;
-    grid-template-rows: 150px 150px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 180px);
     gap: 15px;
     margin-bottom: 20px;
 }
 
-.gallery-img {
+.past-event-img-wrapper {
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #eef1f6;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.past-event-img-wrapper:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.past-event-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    transition: transform 0.3s;
 }
 
-.gallery-img.large-card {
-    grid-row: 1 / span 2;
+.past-event-img-wrapper:hover .past-event-img {
+    transform: scale(1.05);
 }
 
-@media (max-width: 575px) {
-    .past-events-gallery {
-        grid-template-columns: 1fr;
+@media (max-width: 767px) {
+    .past-events-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 150px);
     }
+}
 
-    .gallery-img {
+@media (max-width: 480px) {
+    .past-events-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    .past-event-img {
         height: 220px;
     }
 }
-
-.gallery-pagination {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.gallery-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;

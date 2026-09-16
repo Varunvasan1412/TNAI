@@ -3009,54 +3009,7 @@
     }
 }
 
-/* --- Scroll to top — arrow button on mobile & tablet --- */
-@media only screen and (max-width: 992px) {
-    .scroll-to-top {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: #1649FC;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        right: 15px;
-        bottom: 20px;
-        writing-mode: unset;
-        transform: none;
-        flex-direction: row;
-    }
-    .scroll-to-top__text {
-        display: none !important;
-    }
-    .scroll-to-top__wrapper {
-        display: none !important;
-    }
-    .scroll-to-top::after {
-        content: "";
-        display: block;
-        width: 10px;
-        height: 10px;
-        border-top: 3px solid #ffffff;
-        border-right: 3px solid #ffffff;
-        transform: rotate(-45deg);
-        margin-top: 5px;
-    }
-    .scroll-to-top.show {
-        bottom: 20px;
-        opacity: 1;
-        visibility: visible;
-    }
-}
-
-/* --- Scroll to top — dash orange on laptop --- */
-@media only screen and (min-width: 993px) and (max-width: 1600px) {
-    .scroll-to-top__wrapper {
-        background: #E8831A !important;
-    }
-    .scroll-to-top__inner {
-        background-color: #E8831A !important;
-    }
-}
+/* --- Scroll to top unified globally in style.css --- */
 
 /* --- SMALL PHONES (max-width: 380px) --- */
 @media only screen and (max-width: 380px) {

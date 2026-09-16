@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import CountUp from 'react-countup';
 import SectionWrapper from '../../components/elements/SectionWrapper';
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 const TESTIMONIALS = [
     {
@@ -26,6 +28,17 @@ const TESTIMONIALS = [
 
 const MainSlider: React.FC = () => {
     const [activeTestimonial, setActiveTestimonial] = useState(0);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [photoIndex, setPhotoIndex] = useState(0);
+    
+    const galleryImages = [
+        "/demo.png", "/demo.png", "/demo.png", "/demo.png", "/demo.png"
+    ];
+
+    const openLightbox = (index: number) => {
+        setPhotoIndex(index);
+        setLightboxOpen(true);
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -1300,23 +1313,25 @@ const MainSlider: React.FC = () => {
                         <div className="gt-column">
                             <div className="gt-header">
                                 <h3 className="gt-header-title">PHOTO GALLERY</h3>
-                                <Link to="/gallery" className="gt-view-all">VIEW GALLERY</Link>
+                                <button onClick={() => openLightbox(0)} className="gt-view-all" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>VIEW GALLERY</button>
                             </div>
                             <div className="gallery-marquee-container">
                                 <div className="gallery-marquee">
-                                    <img src="/demo.png" alt="Gallery 1" className="gallery-img" />
-                                    <img src="/demo.png" alt="Gallery 2" className="gallery-img" />
-                                    <img src="/demo.png" alt="Gallery 3" className="gallery-img" />
-                                    <img src="/demo.png" alt="Gallery 4" className="gallery-img" />
-                                    <img src="/demo.png" alt="Gallery 5" className="gallery-img" />
+                                    {galleryImages.map((src, idx) => (
+                                        <img key={idx} src={src} alt={`Gallery ${idx + 1}`} className="gallery-img" style={{ cursor: 'pointer' }} onClick={() => openLightbox(idx)} />
+                                    ))}
                                     {/* Duplicated for infinite marquee effect */}
-                                    <img src="/demo.png" alt="Gallery 1" className="gallery-img" />
-                                    <img src="/demo.png" alt="Gallery 2" className="gallery-img" />
-                                    <img src="/demo.png" alt="Gallery 3" className="gallery-img" />
-                                    <img src="/demo.png" alt="Gallery 4" className="gallery-img" />
-                                    <img src="/demo.png" alt="Gallery 5" className="gallery-img" />
+                                    {galleryImages.map((src, idx) => (
+                                        <img key={`dup-${idx}`} src={src} alt={`Gallery ${idx + 1}`} className="gallery-img" style={{ cursor: 'pointer' }} onClick={() => openLightbox(idx)} />
+                                    ))}
                                 </div>
                             </div>
+                            <Lightbox
+                                open={lightboxOpen}
+                                close={() => setLightboxOpen(false)}
+                                index={photoIndex}
+                                slides={galleryImages.map(src => ({ src }))}
+                            />
                         </div>
 
                         <div className="gt-column">

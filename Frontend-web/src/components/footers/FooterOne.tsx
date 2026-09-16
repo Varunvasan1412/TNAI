@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaChevronRight, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaGlobe } from 'react-icons/fa';
 
 const quickLinks = [
     { label: 'Home', to: '/' },
@@ -114,7 +115,7 @@ const FooterOne: React.FC = () => {
                     gap: 10px;
                     transition: color 0.3s ease;
                 }
-                .tnan-footer-links a i {
+                .tnan-footer-links a svg {
                     font-size: 10px;
                 }
                 .tnan-footer-links a:hover {
@@ -134,14 +135,13 @@ const FooterOne: React.FC = () => {
                     font-weight: 400;
                     line-height: 1.7;
                 }
-                .tnan-footer-contact i {
+                .tnan-footer-contact svg {
                     font-size: 16px;
-                    margin-top: 4px;
+                    margin-top: 5px;
                 }
                 .tnan-footer-bottom {
                     text-align: center;
                     padding: 20px 0;
-                    border-top: 1px solid rgba(255, 255, 255, 0.2);
                     font-size: 13px;
                 }
                 @media (max-width: 991px) {
@@ -174,6 +174,39 @@ const FooterOne: React.FC = () => {
                         height: 80px;
                     }
                 }
+                .tnan-footer-image {
+                    width: 100%;
+                    text-align: center;
+                }
+                .footer-skyline-img {
+                    width: 45%;
+                    max-width: 1000px;
+                    height: auto;
+                    object-fit: contain;
+                    margin-bottom: -90px;
+                    margin-top: -90px;
+                }
+                @media (max-width: 1199px) {
+                    .footer-skyline-img {
+                        width: 60%;
+                        margin-bottom: -75px;
+                        margin-top: -90px;
+                    }
+                }
+                @media (max-width: 991px) {
+                    .footer-skyline-img {
+                        width: 75%;
+                        margin-bottom: -60px;
+                        margin-top: -90px;
+                    }
+                }
+                @media (max-width: 767px) {
+                    .footer-skyline-img {
+                        width: 95%;
+                        margin-bottom: -50px;
+                        margin-top: -60px;
+                    }
+                }
             `}</style>
 
             <div className="container-fluid px-4 px-lg-5">
@@ -194,10 +227,10 @@ const FooterOne: React.FC = () => {
                                     <p>Together We Serve</p>
                                     <p>Together We Grow</p>
                                     <div className="tnan-footer-socials">
-                                        <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i className="fab fa-instagram"></i></a>
-                                        <a href="#"><i className="fab fa-youtube"></i></a>
-                                        <a href="#"><i className="fab fa-linkedin-in"></i></a>
+                                        <a href="#"><FaFacebookF /></a>
+                                        <a href="#"><FaInstagram /></a>
+                                        <a href="#"><FaYoutube /></a>
+                                        <a href="#"><FaLinkedinIn /></a>
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +243,7 @@ const FooterOne: React.FC = () => {
                                 {quickLinks.map((link, index) => (
                                     <li key={index}>
                                         <Link to={link.to}>
-                                            <i className="fas fa-chevron-right"></i> {link.label}
+                                            <FaChevronRight /> {link.label}
                                         </Link>
                                     </li>
                                 ))}
@@ -224,7 +257,7 @@ const FooterOne: React.FC = () => {
                                 {importantLinks.map((link, index) => (
                                     <li key={index}>
                                         <a href={link.href} target="_blank" rel="noopener noreferrer">
-                                            <i className="fas fa-chevron-right"></i> {link.label}
+                                            <FaChevronRight /> {link.label}
                                         </a>
                                     </li>
                                 ))}
@@ -236,7 +269,7 @@ const FooterOne: React.FC = () => {
                             <h4 className="tnan-footer-title">CONTACT US</h4>
                             <ul className="tnan-footer-contact">
                                 <li>
-                                    <i className="fas fa-map-marker-alt"></i>
+                                    <FaMapMarkerAlt />
                                     <div>
                                         No. 4/25 & 4/75, 24th Street,<br />
                                         Ashtalakshmi Nagar, Alapakkam,<br />
@@ -244,21 +277,25 @@ const FooterOne: React.FC = () => {
                                     </div>
                                 </li>
                                 <li>
-                                    <i className="fas fa-phone"></i>
+                                    <FaPhoneAlt />
                                     <div>044 - 2381 6786</div>
                                 </li>
                                 <li>
-                                    <i className="fas fa-envelope"></i>
+                                    <FaEnvelope />
                                     <div>tnatsnb@gmail.com</div>
                                 </li>
                                 <li>
-                                    <i className="fas fa-globe"></i>
+                                    <FaGlobe />
                                     <div>www.tnaitamilnadu.com</div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="tnan-footer-image">
+                <img src="/Footer.png" alt="Tamil Nadu Skyline" className="footer-skyline-img" />
             </div>
 
             <div className="tnan-footer-bottom">

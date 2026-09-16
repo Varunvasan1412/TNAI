@@ -20,6 +20,7 @@ const Test3DPage = lazy(() => import('../pages/test-3d/Test3DPage'));
 const Terms = lazy(() => import('../pages/terms/Terms'));
 const Privacy = lazy(() => import('../pages/privacy/Privacy'));
 const Events = lazy(() => import('../pages/events/Events'));
+const Membership = lazy(() => import('../pages/membership/Membership'));
 
 const HomeOne = lazy(() => import('../home/HomeOne'));
 const HomeTwo = lazy(() => import('../home/HomeTwo'));
@@ -80,6 +81,7 @@ const ROUTER = createBrowserRouter([
                     { path: "/test-3d",              element: <ErrorBoundary name='Test 3D'><SuspenseWrapper><Test3DPage /></SuspenseWrapper></ErrorBoundary> },
                     { path: "/terms-and-conditions", element: <ErrorBoundary name='Terms'><SuspenseWrapper><Terms /></SuspenseWrapper></ErrorBoundary> },
                     { path: "/privacy-policy",       element: <ErrorBoundary name='Privacy'><SuspenseWrapper><Privacy /></SuspenseWrapper></ErrorBoundary> },
+                    { path: "/membership",            element: <ErrorBoundary name='Membership'><SuspenseWrapper><Membership /></SuspenseWrapper></ErrorBoundary> },
                 ]
             },
         ]

@@ -82,6 +82,13 @@ const MobileNav: React.FC = () => {
                         ))}
                     </div>
                 </div>
+
+                <div style={{ marginTop: '30px' }}>
+                    <Link to="/login" className="custom-login-btn" style={{ justifyContent: 'center', padding: '14px 0' }}>
+                        <i className="far fa-user"></i> LOGIN
+                    </Link>
+                </div>
+
             </div>
         </div>
     );

@@ -8,34 +8,34 @@ interface RouteSEO {
 
 const SEO_MAP: Record<string, RouteSEO> = {
   '/': {
-    title: 'The Wall Project | Premium Wallpapers, Customized Murals & Textured Wall Decor',
-    description: 'Transform your living and commercial spaces with high-quality custom wallpapers, luxury 3D wall murals, textured vinyls, and metallic foil finishes from The Wall Project, Coimbatore.',
+    title: "THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH",
+    description: "Welcome to THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH. Advancing nursing and building a healthier society.",
   },
   '/about': {
-    title: 'About Us | The Wall Project - Wallpaper Store',
-    description: 'Learn about The Wall Project — Coimbatore’s premier custom wallpaper studio specializing in bespoke wall coverings, tactile interior finishes, and professional installation.',
+    title: "About Us | THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH",
+    description: "Learn about THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH and our mission to support nursing professionals.",
   },
-  '/gallery': {
-    title: 'Wallpaper Gallery & Collections | The Wall Project',
-    description: 'Explore our exquisite range of botanical, geometric, damask, luxury gold foil, and 3D textured wallpapers crafted for homes and commercial interiors.',
+  '/membership': {
+    title: "Membership | THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH",
+    description: "Become a member of THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH. Join online today.",
   },
   '/contact': {
-    title: 'Contact Us | The Wall Project - Customized Wallpaper Studio',
-    description: 'Get in touch with our wallpaper design experts. Book a free consultation, request custom size quotes, or visit our showroom in Coimbatore.',
+    title: "Contact Us | THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH",
+    description: "Get in touch with THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH for any inquiries or support.",
   },
   '/privacy-policy': {
-    title: 'Privacy Policy | The Wall Project',
-    description: 'Read our privacy policy regarding data collection, protection, and usage at The Wall Project.',
+    title: "Privacy Policy | THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH",
+    description: "Read our privacy policy regarding data collection, protection, and usage at THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH.",
   },
   '/terms-and-conditions': {
-    title: 'Terms & Conditions | The Wall Project',
-    description: 'Review our terms of service, ordering process, custom sizing guidelines, and warranty policies.',
+    title: "Terms & Conditions | THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH",
+    description: "Review our terms of service and conditions for THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH.",
   },
 };
 
 const DEFAULT_SEO: RouteSEO = {
-  title: 'The Wall Project - Premium Custom Wallpaper Store',
-  description: 'Handcrafted luxury wallpapers, customized wall murals, and textured wall coverings for residential and commercial spaces.',
+  title: "THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH",
+  description: "THE TRAINED NURSES' ASSOCIATION OF INDIA TAMIL NADU STATE BRANCH - Empowering nurses and advancing healthcare.",
 };
 
 const SEOManager: React.FC = () => {
