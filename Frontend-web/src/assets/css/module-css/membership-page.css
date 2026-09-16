@@ -1,0 +1,638 @@
+/* ===================================================
+   MEMBERSHIP PAGE — membership-page.css
+   =================================================== */
+
+.membership-page-wrapper {
+    background-color: #f9fafc;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* ── QUICK LINKS SECTION ─────────────────────────── */
+.membership-links-section {
+    padding: 60px 0 50px;
+    background: #ffffff;
+}
+
+.membership-links-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    width: 100%;
+    padding: 0 55px;
+}
+
+.membership-link-card {
+    background: #ffffff;
+    border: 1px solid #e8edf5;
+    border-radius: 12px;
+    padding: 28px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    box-shadow: 0 2px 16px rgba(0, 34, 125, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.membership-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 28px rgba(0, 34, 125, 0.12);
+}
+
+/* coloured circle icon wrapper */
+.membership-link-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.membership-link-icon img {
+    width: 60px;
+    height: 52px;
+    object-fit: contain;
+}
+
+.membership-link-icon svg {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+/* card colour variants */
+.membership-link-icon--blue {
+    background-color: #1a3fa4;
+}
+
+.membership-link-icon--green {
+    background-color: #1a7a4a;
+}
+
+.membership-link-icon--purple {
+    background-color: #6b3fa4;
+}
+
+.membership-link-icon--orange {
+    background-color: #e87722;
+}
+
+.membership-link-icon--teal {
+    background-color: #1a8a8a;
+}
+
+.membership-link-icon--lblue {
+    background-color: #1a6eb5;
+}
+
+.membership-link-title {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.35;
+    letter-spacing: 0.5px;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* title colour variants */
+.membership-link-title--blue {
+    color: #1a3fa4;
+}
+
+.membership-link-title--green {
+    color: #1a7a4a;
+}
+
+.membership-link-title--purple {
+    color: #6b3fa4;
+}
+
+.membership-link-title--orange {
+    color: #e87722;
+}
+
+.membership-link-title--teal {
+    color: #1a8a8a;
+}
+
+.membership-link-title--lblue {
+    color: #1a6eb5;
+}
+
+.membership-link-desc {
+    font-size: 14px;
+    color: #222222;
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+}
+
+.membership-link-arrow {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 4px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.membership-link-card:hover .membership-link-arrow {
+    transform: translateX(5px);
+}
+
+/* arrow colour variants */
+.membership-link-arrow--blue {
+    color: #1a3fa4;
+}
+
+.membership-link-arrow--green {
+    color: #1a7a4a;
+}
+
+.membership-link-arrow--purple {
+    color: #6b3fa4;
+}
+
+.membership-link-arrow--orange {
+    color: #e87722;
+}
+
+.membership-link-arrow--teal {
+    color: #1a8a8a;
+}
+
+.membership-link-arrow--lblue {
+    color: #1a6eb5;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 1199px) {
+    .membership-links-grid {
+        padding: 0 30px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .membership-links-grid {
+        padding: 0 20px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .membership-links-grid {
+        padding: 0 15px;
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   THREE-COLUMN INFO SECTION
+   ═══════════════════════════════════════════════ */
+.mem-info-section {
+    background: #ffffff;
+    padding: 60px 55px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mem-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+/* ── Column card — full card gets a light tint ── */
+.mem-info-col {
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+.mem-info-col--blue {
+    background: #eef1fb;
+}
+
+.mem-info-col--green {
+    background: #f0f8f3;
+}
+
+.mem-info-col--purple {
+    background: #f3eefb;
+}
+
+/* ── Header — no background, blends with card ── */
+.mem-info-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 24px 12px;
+    background: transparent;
+}
+
+/* ── Header icon circle ── */
+.mem-info-header-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mem-info-header-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.mem-info-header-icon--blue {
+    background: #1a3fa4;
+}
+
+.mem-info-header-icon--green {
+    background: #1a6b3a;
+}
+
+.mem-info-header-icon--purple {
+    background: #5c1a8a;
+}
+
+/* ── Header text ── */
+.mem-info-title {
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+}
+
+.mem-info-col--blue .mem-info-title,
+.mem-info-col--blue .mem-info-tagline {
+    color: #1a3fa4;
+}
+
+.mem-info-col--green .mem-info-title,
+.mem-info-col--green .mem-info-tagline {
+    color: #1a6b3a;
+}
+
+.mem-info-col--purple .mem-info-title,
+.mem-info-col--purple .mem-info-tagline {
+    color: #5c1a8a;
+}
+
+.mem-info-tagline {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ── Intro paragraph ── */
+.mem-info-intro {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.65;
+    padding: 20px 24px 10px;
+    margin: 0;
+    text-align: center;
+}
+
+/* ── Feature list ── */
+.mem-info-features {
+    list-style: none;
+    padding: 10px 24px;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.mem-info-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.mem-info-feature-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* small circle icon */
+.mem-info-feature-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.mem-info-feature-icon--blue {
+    background: #1a3fa4;
+}
+
+.mem-info-feature-icon--green {
+    background: #1a6b3a;
+}
+
+.mem-info-feature-icon--purple {
+    background: #5c1a8a;
+}
+
+.mem-info-col--blue .mem-info-feature-item strong {
+    color: #1a3fa4;
+}
+
+.mem-info-col--green .mem-info-feature-item strong {
+    color: #1a6b3a;
+}
+
+.mem-info-col--purple .mem-info-feature-item strong {
+    color: #5c1a8a;
+}
+
+.mem-info-feature-item strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.mem-info-feature-item p {
+    font-size: 15px;
+    color: #444;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── CTA Button ── */
+.mem-info-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    gap: 8px;
+    margin: 15px auto 24px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.mem-info-btn::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 50%;
+    height: 0;
+    visibility: hidden;
+    background: #ffffff;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+}
+
+.mem-info-btn:hover::before {
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.mem-info-btn::after {
+    position: absolute;
+    background: #ffffff;
+    bottom: 0;
+    right: 0;
+    content: "";
+    width: 50%;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+}
+
+.mem-info-btn:hover::after {
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.mem-info-btn:hover {
+    border-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.45);
+}
+
+.mem-info-btn--blue {
+    background: #1a3fa4;
+}
+
+.mem-info-btn--blue:hover {
+    color: #1a3fa4 !important;
+}
+
+.mem-info-btn--green {
+    background: #1a6b3a;
+}
+
+.mem-info-btn--green:hover {
+    color: #1a6b3a !important;
+}
+
+.mem-info-btn--purple {
+    background: #5c1a8a;
+}
+
+.mem-info-btn--purple:hover {
+    color: #5c1a8a !important;
+}
+
+/* ── Footer Illustration ── */
+.mem-info-footer-img {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto 24px;
+    object-fit: contain;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1199px) {
+    .mem-info-section {
+        padding: 50px 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .mem-info-grid {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    .mem-info-section {
+        padding: 40px 20px;
+    }
+}
+
+/* ── CTA Banner Section ── */
+.mem-cta-banner {
+    padding: 0 55px 60px;
+}
+
+.mem-cta-container {
+    background: url('/Togetherbg.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 12px;
+    padding: 40px 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.mem-cta-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.mem-cta-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #00227D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mem-cta-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.mem-cta-text h3 {
+    color: #00227D;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 0 6px 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mem-cta-text p {
+    color: #00227D;
+    font-size: 15px;
+    margin: 0;
+}
+
+.mem-cta-btn {
+    background-color: #00227D;
+    color: white !important;
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.mem-cta-btn::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 50%;
+    height: 0;
+    visibility: hidden;
+    background: #ffffff;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+}
+
+.mem-cta-btn:hover::before {
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.mem-cta-btn::after {
+    position: absolute;
+    background: #ffffff;
+    bottom: 0;
+    right: 0;
+    content: "";
+    width: 50%;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+}
+
+.mem-cta-btn:hover::after {
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.mem-cta-btn:hover {
+    color: #00227D !important;
+    border-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 991px) {
+    .mem-cta-banner {
+        padding: 0 20px 40px;
+    }
+    .mem-cta-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+    .mem-cta-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

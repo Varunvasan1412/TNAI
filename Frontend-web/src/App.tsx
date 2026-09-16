@@ -9,6 +9,7 @@ import ScrollToTop from './components/elements/ScrollToTop';
 import VideoPopup from './components/elements/VideoPopup';
 import MobileNav from './components/elements/MobileNav';
 import SEOManager from './components/elements/SEOManager';
+import Preloader from './components/elements/Preloader';
 
 const App: React.FC = () => {
   const { isMobileManu, isSearch, showVideoPopup } = useRsistoreContext();
@@ -54,6 +55,7 @@ const App: React.FC = () => {
 
   return (
     <div className={`custom-cursor ${isMobileManu ? "locked" : ""} ${isSearch ? 'search-active' : ''}`}>
+      <Preloader />
       <SEOManager />
       <CustomCursor enabled />
       <Outlet />

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router';
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 import {
     FaCalendarAlt, FaMapMarkerAlt, FaRegClock, FaArrowRight,
     FaUsers, FaChalkboardTeacher, FaGraduationCap,
@@ -12,6 +14,23 @@ import PageBanner from '../../components/elements/PageBanner';
 import '../../assets/css/module-css/events-page.css';
 
 const Events: React.FC = () => {
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [photoIndex, setPhotoIndex] = useState(0);
+
+    const pastEventImages = [
+        "/Hero.png",
+        "/Contact.png",
+        "/Footer.png",
+        "/demo.png",
+        "/TNAI.png",
+        "/Hero.png"
+    ];
+
+    const openLightbox = (index: number) => {
+        setPhotoIndex(index);
+        setLightboxOpen(true);
+    };
+
     return (
         <div className="custom-cursor__cursor-outer">
             <HeaderOne />
@@ -149,23 +168,23 @@ const Events: React.FC = () => {
                         <div className="why-title">WHY PARTICIPATE?</div>
                         <div className="why-features">
                             <div className="why-feature-item">
-                                <FaBookOpen />
+                                <img src="/Book.webp" alt="Enhance Knowledge" className="why-feature-icon" />
                                 <span className="why-feature-text">Enhance<br />Knowledge</span>
                             </div>
                             <div className="why-feature-item">
-                                <FaUsers />
+                                <img src="/workers.webp" alt="Build Professional Networks" className="why-feature-icon" />
                                 <span className="why-feature-text">Build<br />Professional<br />Networks</span>
                             </div>
                             <div className="why-feature-item">
-                                <FaAward />
+                                <img src="/Earn.webp" alt="Earn CNE Credits" className="why-feature-icon" />
                                 <span className="why-feature-text">Earn CNE<br />Credits</span>
                             </div>
                             <div className="why-feature-item">
-                                <FaChartLine />
+                                <img src="/Advance.webp" alt="Advance Your Career" className="why-feature-icon" />
                                 <span className="why-feature-text">Advance<br />Your Career</span>
                             </div>
                             <div className="why-feature-item">
-                                <FaRibbon />
+                                <img src="/Stay.webp" alt="Stay Updated with Latest Trends" className="why-feature-icon" />
                                 <span className="why-feature-text">Stay Updated with<br />Latest Trends</span>
                             </div>
                         </div>
@@ -178,22 +197,25 @@ const Events: React.FC = () => {
                         <div className="past-events-col">
                             <div className="events-section-header">
                                 <h3 className="events-section-title">GLIMPSES OF PAST EVENTS</h3>
-                                <Link to="/events" className="events-view-all">VIEW GALLERY <FaArrowRight /></Link>
+                                <button onClick={() => openLightbox(0)} className="events-view-all" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                                    VIEW GALLERY <FaArrowRight />
+                                </button>
                             </div>
 
-                            <div className="past-events-gallery">
-                                <img src="/TNAI.png" alt="Large Event Logo" className="gallery-img large-card" style={{objectFit: 'contain', border: '1px solid #eef1f6', padding: '10px'}} />
-                                <img src="/Hero.png" alt="Past Event 2" className="gallery-img" />
-                                <img src="/Contact.png" alt="Past Event 3" className="gallery-img" />
-                                <img src="/Footer.png" alt="Past Event 4" className="gallery-img" />
-                                <img src="/demo.png" alt="Past Event 5" className="gallery-img" />
+                            <div className="past-events-grid">
+                                {pastEventImages.map((src, idx) => (
+                                    <div key={idx} className="past-event-img-wrapper" onClick={() => openLightbox(idx)}>
+                                        <img src={src} alt={`Past Event ${idx + 1}`} className="past-event-img" />
+                                    </div>
+                                ))}
                             </div>
-                            <div className="gallery-pagination">
-                                <div className="gallery-dot active"></div>
-                                <div className="gallery-dot"></div>
-                                <div className="gallery-dot"></div>
-                                <div className="gallery-dot"></div>
-                            </div>
+                            
+                            <Lightbox
+                                open={lightboxOpen}
+                                close={() => setLightboxOpen(false)}
+                                index={photoIndex}
+                                slides={pastEventImages.map(src => ({ src }))}
+                            />
                         </div>
 
                         {/* OUR IMPACT */}
