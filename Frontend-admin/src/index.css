@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* Forcefully disable dark mode entirely for this project */
+@custom-variant dark (.never-dark-ever &);
+
+/*
+ * ═══════════════════════════════════════════════════════════════
+ * GLOBAL STYLES & RESET
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+@layer base {
+  :root {
+    --color-primary: #0A1C40; /* TNAI Navy Blue */
+    --color-secondary: #1F3F77; /* TNAI Lighter Blue */
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-slate-600 dark:text-slate-400 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[#1E293B];
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 dark:bg-slate-700 rounded-full transition-colors;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-300 dark:bg-slate-600;
+  }
+}
+
+/*
+ * ═══════════════════════════════════════════════════════════════
+ * COMPONENT OVERRIDES & UTILITIES
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+@layer utilities {
+  .bg-stripes {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+  }
+
+  .animate-stripes {
+    animation: stripes 1s linear infinite;
+  }
+
+  @keyframes stripes {
+    from { background-position: 1rem 0; }
+    to { background-position: 0 0; }
+  }
+
+  /* Glassmorphism helpers */
+  .glass {
+    @apply bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-white/20 dark:border-slate-700/50;
+  }
+
+  /* Typography shadows */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+/*
+ * Heading weight override — outside @layer so it beats all Tailwind utility layers.
+ * Forces font-black (900) on every h1-h6 regardless of explicit font-* utility classes.
+ * Color is intentionally NOT forced here so text-white / text-primary variants still work.
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+/* SimpleBar Dark Mode overrides */
+.simplebar-track.simplebar-vertical {
+  width: 7px !important;
+}
+.simplebar-scrollbar:before {
+  @apply bg-slate-300 dark:bg-slate-600;
+  opacity: 0.5 !important;
+}
+
+/* 
+ * FINAL NOTE: Legacy Bootstrap and App CSS have been completely purged.
+ * All layouts are now 100% Tailwind managed via MainLayout.jsx.
+ */

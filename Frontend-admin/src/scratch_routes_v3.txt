@@ -1,0 +1,120 @@
+
+import GalleryAlbums from '../pages/GalleryAlbums';
+import GalleryAlbumForm from '../pages/GalleryAlbumForm';
+import GalleryAlbumView from '../pages/GalleryAlbumView';
+
+
+  <Route key="crm-gallery-albums" path="/crm/gallery/albums" element={<W><GalleryAlbums /></W>} />
+  <Route key="crm-gallery-albums-add" path="/crm/gallery/albums/add" element={<W><GalleryAlbumForm /></W>} />
+  <Route key="crm-gallery-albums-edit" path="/crm/gallery/albums/edit/:id" element={<W><GalleryAlbumForm /></W>} />
+  <Route key="crm-gallery-albums-view" path="/crm/gallery/albums/view/:id" element={<W><GalleryAlbumView /></W>} />
+
+
+import GalleryImages from '../pages/GalleryImages';
+import GalleryImageForm from '../pages/GalleryImageForm';
+import GalleryImageView from '../pages/GalleryImageView';
+
+
+  <Route key="crm-gallery-images" path="/crm/gallery/images" element={<W><GalleryImages /></W>} />
+  <Route key="crm-gallery-images-add" path="/crm/gallery/images/add" element={<W><GalleryImageForm /></W>} />
+  <Route key="crm-gallery-images-edit" path="/crm/gallery/images/edit/:id" element={<W><GalleryImageForm /></W>} />
+  <Route key="crm-gallery-images-view" path="/crm/gallery/images/view/:id" element={<W><GalleryImageView /></W>} />
+
+
+import Downloads from '../pages/Downloads';
+import DownloadForm from '../pages/DownloadForm';
+import DownloadView from '../pages/DownloadView';
+
+
+  <Route key="crm-downloads" path="/crm/downloads" element={<W><Downloads /></W>} />
+  <Route key="crm-downloads-add" path="/crm/downloads/add" element={<W><DownloadForm /></W>} />
+  <Route key="crm-downloads-edit" path="/crm/downloads/edit/:id" element={<W><DownloadForm /></W>} />
+  <Route key="crm-downloads-view" path="/crm/downloads/view/:id" element={<W><DownloadView /></W>} />
+
+
+import VoiceConcerns from '../pages/VoiceConcerns';
+import VoiceConcernForm from '../pages/VoiceConcernForm';
+import VoiceConcernView from '../pages/VoiceConcernView';
+
+
+  <Route key="crm-voice-concern" path="/crm/voice-concern" element={<W><VoiceConcerns /></W>} />
+  <Route key="crm-voice-concern-add" path="/crm/voice-concern/add" element={<W><VoiceConcernForm /></W>} />
+  <Route key="crm-voice-concern-edit" path="/crm/voice-concern/edit/:id" element={<W><VoiceConcernForm /></W>} />
+  <Route key="crm-voice-concern-view" path="/crm/voice-concern/view/:id" element={<W><VoiceConcernView /></W>} />
+
+
+import Activities from '../pages/Activities';
+import ActivityForm from '../pages/ActivityForm';
+import ActivityView from '../pages/ActivityView';
+
+
+  <Route key="crm-activities" path="/crm/activities" element={<W><Activities /></W>} />
+  <Route key="crm-activities-add" path="/crm/activities/add" element={<W><ActivityForm /></W>} />
+  <Route key="crm-activities-edit" path="/crm/activities/edit/:id" element={<W><ActivityForm /></W>} />
+  <Route key="crm-activities-view" path="/crm/activities/view/:id" element={<W><ActivityView /></W>} />
+
+
+import SnaUnits from '../pages/SnaUnits';
+import SnaUnitForm from '../pages/SnaUnitForm';
+import SnaUnitView from '../pages/SnaUnitView';
+
+
+  <Route key="crm-sna-units" path="/crm/sna-units" element={<W><SnaUnits /></W>} />
+  <Route key="crm-sna-units-add" path="/crm/sna-units/add" element={<W><SnaUnitForm /></W>} />
+  <Route key="crm-sna-units-edit" path="/crm/sna-units/edit/:id" element={<W><SnaUnitForm /></W>} />
+  <Route key="crm-sna-units-view" path="/crm/sna-units/view/:id" element={<W><SnaUnitView /></W>} />
+
+
+import TnaiUnits from '../pages/TnaiUnits';
+import TnaiUnitForm from '../pages/TnaiUnitForm';
+import TnaiUnitView from '../pages/TnaiUnitView';
+
+
+  <Route key="crm-tnai-units" path="/crm/tnai-units" element={<W><TnaiUnits /></W>} />
+  <Route key="crm-tnai-units-add" path="/crm/tnai-units/add" element={<W><TnaiUnitForm /></W>} />
+  <Route key="crm-tnai-units-edit" path="/crm/tnai-units/edit/:id" element={<W><TnaiUnitForm /></W>} />
+  <Route key="crm-tnai-units-view" path="/crm/tnai-units/view/:id" element={<W><TnaiUnitView /></W>} />
+
+
+import Impacts from '../pages/Impacts';
+import ImpactForm from '../pages/ImpactForm';
+import ImpactView from '../pages/ImpactView';
+
+
+  <Route key="crm-impacts" path="/crm/impacts" element={<W><Impacts /></W>} />
+  <Route key="crm-impacts-add" path="/crm/impacts/add" element={<W><ImpactForm /></W>} />
+  <Route key="crm-impacts-edit" path="/crm/impacts/edit/:id" element={<W><ImpactForm /></W>} />
+  <Route key="crm-impacts-view" path="/crm/impacts/view/:id" element={<W><ImpactView /></W>} />
+
+
+import StudentDetails from '../pages/StudentDetails';
+import StudentDetailForm from '../pages/StudentDetailForm';
+import StudentDetailView from '../pages/StudentDetailView';
+
+
+  <Route key="crm-students" path="/crm/students" element={<W><StudentDetails /></W>} />
+  <Route key="crm-students-add" path="/crm/students/add" element={<W><StudentDetailForm /></W>} />
+  <Route key="crm-students-edit" path="/crm/students/edit/:id" element={<W><StudentDetailForm /></W>} />
+  <Route key="crm-students-view" path="/crm/students/view/:id" element={<W><StudentDetailView /></W>} />
+
+
+import SnaOfficeBearers from '../pages/SnaOfficeBearers';
+import SnaOfficeBearerForm from '../pages/SnaOfficeBearerForm';
+import SnaOfficeBearerView from '../pages/SnaOfficeBearerView';
+
+
+  <Route key="crm-sna-office-bearers" path="/crm/sna-office-bearers" element={<W><SnaOfficeBearers /></W>} />
+  <Route key="crm-sna-office-bearers-add" path="/crm/sna-office-bearers/add" element={<W><SnaOfficeBearerForm /></W>} />
+  <Route key="crm-sna-office-bearers-edit" path="/crm/sna-office-bearers/edit/:id" element={<W><SnaOfficeBearerForm /></W>} />
+  <Route key="crm-sna-office-bearers-view" path="/crm/sna-office-bearers/view/:id" element={<W><SnaOfficeBearerView /></W>} />
+
+
+import InstitutionProfiles from '../pages/InstitutionProfiles';
+import InstitutionProfileForm from '../pages/InstitutionProfileForm';
+import InstitutionProfileView from '../pages/InstitutionProfileView';
+
+
+  <Route key="crm-institution-profile" path="/crm/institution-profile" element={<W><InstitutionProfiles /></W>} />
+  <Route key="crm-institution-profile-add" path="/crm/institution-profile/add" element={<W><InstitutionProfileForm /></W>} />
+  <Route key="crm-institution-profile-edit" path="/crm/institution-profile/edit/:id" element={<W><InstitutionProfileForm /></W>} />
+  <Route key="crm-institution-profile-view" path="/crm/institution-profile/view/:id" element={<W><InstitutionProfileView /></W>} />
