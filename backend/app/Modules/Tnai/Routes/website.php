@@ -41,3 +41,9 @@ Route::get('/impacts/{id}', [\App\Modules\Tnai\Controllers\Web\ImpactController:
 
 Route::get('/office-bearers', [\App\Modules\Tnai\Controllers\Web\OfficeBearerController::class, 'index']);
 Route::get('/office-bearers/{id}', [\App\Modules\Tnai\Controllers\Web\OfficeBearerController::class, 'show']);
+
+// Voice Your Concern (Public Endpoints)
+Route::post('/concerns/send-otp', [\App\Modules\Tnai\Controllers\ConcernController::class, 'sendOtp']);
+Route::post('/concerns/resend-otp', [\App\Modules\Tnai\Controllers\ConcernController::class, 'resendOtp']);
+Route::post('/concerns/verify-otp', [\App\Modules\Tnai\Controllers\ConcernController::class, 'verifyOtp']);
+Route::post('/concerns', [\App\Modules\Tnai\Controllers\ConcernController::class, 'store']);

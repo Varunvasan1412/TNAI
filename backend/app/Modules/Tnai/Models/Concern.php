@@ -12,13 +12,13 @@ class Concern extends Model
     protected $fillable = [
         'member_name',
         'tnai_membership_number',
-        'snai_membership_number',
+        'aadhar_number',
         'email',
         'mobile_number',
         'institution',
         'branch_zone',
         'concern_category',
-        'subject',
+        'title',
         'description',
         'attachment',
         

@@ -25,8 +25,16 @@ class EventController extends Controller
         // if (!$request->user()) {
         //     $query->where('approval_status', 'approved')->where('status', 'active');
         // } else {
+            if ($request->has('status')) {
+                $query->where('status', $request->status);
+            } else {
+                $query->where('status', 'active');
+            }
+
             if ($request->has('approval_status')) {
                 $query->where('approval_status', $request->approval_status);
+            } else {
+                $query->where('approval_status', '!=', 'draft');
             }
         // }
 
@@ -59,7 +67,7 @@ class EventController extends Controller
             'contact_email' => 'required|email',
             'contact_phone' => 'required|string|max:20',
             'event_brochure' => 'required|string', // Relaxed for JSON testing
-            'display_order' => 'required|integer',
+            'display_order' => 'nullable|integer',
             'organizing_chairperson' => 'required|string|max:255',
             'organizing_secretary' => 'required|string|max:255',
             'status' => 'sometimes|in:active,inactive',
@@ -84,7 +92,7 @@ class EventController extends Controller
         }
 
         $data['submitted_by'] = $request->user()?->id;
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
 
         $event = Event::create($data);
 
@@ -127,7 +135,7 @@ class EventController extends Controller
 
         // If it was already approved, editing it sends it back to Draft
         if ($event->approval_status === 'approved') {
-            $data['approval_status'] = 'draft';
+            $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
             $data['reviewed_by'] = null;
             $data['reviewed_date'] = null;
         }
@@ -165,10 +173,6 @@ class EventController extends Controller
         $event = Event::find($id);
         if (!$event) return $this->error('Event not found', 404);
 
-        if ($event->approval_status !== 'pending') {
-            return $this->error('Only pending items can be approved', 400);
-        }
-
         $event->update([
             'approval_status' => 'approved',
             'reviewed_by' => $request->user()?->id,
@@ -187,8 +191,7 @@ class EventController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'rejection_reason' => 'required|string',
-            'status_type' => 'required|in:rejected,rework'
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return $this->validationError($validator->errors());
@@ -198,7 +201,7 @@ class EventController extends Controller
         if (!$event) return $this->error('Event not found', 404);
 
         $event->update([
-            'approval_status' => $request->status_type,
+            'approval_status' => $request->input('approval_status', $request->input('type', 'rejected')),
             'reviewed_by' => $request->user()?->id,
             'reviewed_date' => now(),
             'rejection_reason' => $request->rejection_reason,

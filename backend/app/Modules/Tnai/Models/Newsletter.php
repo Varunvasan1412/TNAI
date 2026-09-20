@@ -15,6 +15,7 @@ class Newsletter extends Model
         'publication_date',
         'cover_image',
         'short_description',
+        'president_message',
         'newsletter_pdf',
         'external_url',
         'display_order',

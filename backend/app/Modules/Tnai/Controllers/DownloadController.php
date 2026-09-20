@@ -17,12 +17,21 @@ class DownloadController extends Controller
      */
     public function index(Request $request)
     {
-        $status = $request->query('approval_status');
+        $approvalStatus = $request->query('approval_status');
+        $recordStatus = $request->query('status');
         
         $query = Download::with(['submittedBy', 'reviewedBy']);
+
+        if ($recordStatus) {
+            $query->where('status', $recordStatus);
+        } else {
+            $query->where('status', 'active');
+        }
         
-        if ($status) {
-            $query->where('approval_status', strtolower($status));
+        if ($approvalStatus) {
+            $query->where('approval_status', strtolower($approvalStatus));
+        } else {
+            $query->where('approval_status', '!=', 'draft');
         }
 
         return $this->success($query->get(), 'Downloads retrieved successfully');
@@ -57,7 +66,7 @@ class DownloadController extends Controller
         }
 
         $data['submitted_by'] = $request->user()?->id;
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
 
         $download = Download::create($data);
 
@@ -110,7 +119,7 @@ class DownloadController extends Controller
         }
 
         // Revert to draft upon update
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
         $data['submitted_by'] = $request->user()?->id;
 
         $download->update($data);
@@ -160,10 +169,6 @@ class DownloadController extends Controller
         $download = Download::find($id);
         if (!$download) return $this->error('Download not found', 404);
 
-        if ($download->approval_status !== 'pending') {
-            return $this->error('Only pending records can be approved.', 400);
-        }
-
         $download->update([
             'approval_status' => 'approved',
             'reviewed_by' => $request->user()?->id,
@@ -182,8 +187,7 @@ class DownloadController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'rejection_reason' => 'required|string',
-            'type' => 'required|in:reject,rework'
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return $this->validationError($validator->errors());
@@ -192,11 +196,8 @@ class DownloadController extends Controller
         $download = Download::find($id);
         if (!$download) return $this->error('Download not found', 404);
 
-        if ($download->approval_status !== 'pending') {
-            return $this->error('Only pending records can be rejected or sent for rework.', 400);
-        }
-
-        $status = $request->type === 'rework' ? 'rework' : 'rejected';
+        $status = $request->input('approval_status', $request->input('type', 'rejected'));
+        if ($status !== 'rework') $status = 'rejected';
 
         $download->update([
             'approval_status' => $status,

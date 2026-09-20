@@ -17,13 +17,24 @@ class ActivityController extends Controller
      */
     public function index(Request $request)
     {
-        $status = $request->query('approval_status');
-        
         $query = Activity::with(['submittedBy', 'reviewedBy']);
-        
-        if ($status) {
-            $query->where('approval_status', strtolower($status));
-        }
+
+        // TEMPORARILY DISABLED FOR TESTING WITHOUT AUTH
+        // if (!$request->user()) {
+        //     $query->where('approval_status', 'approved')->where('status', 'active');
+        // } else {
+            if ($request->has('status')) {
+                $query->where('status', $request->status);
+            } else {
+                $query->where('status', 'active');
+            }
+
+            if ($request->has('approval_status')) {
+                $query->where('approval_status', $request->approval_status);
+            } else {
+                $query->where('approval_status', '!=', 'draft');
+            }
+        // }
 
         return $this->success($query->get(), 'Activities retrieved successfully');
     }
@@ -69,7 +80,7 @@ class ActivityController extends Controller
         // Handle logic for image uploads if switched to Multipart Form Data
         // ...
 
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
         $data['submitted_by'] = $request->user()?->id;
 
         $activity = Activity::create($data);
@@ -110,7 +121,7 @@ class ActivityController extends Controller
         }
 
         // Revert to draft if updated
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
 
         $activity->update($data);
 
@@ -159,10 +170,6 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
         if (!$activity) return $this->error('Activity not found', 404);
 
-        if ($activity->approval_status !== 'pending') {
-            return $this->error('Only pending activities can be approved', 400);
-        }
-
         $activity->update([
             'approval_status' => 'approved',
             'reviewed_by' => $request->user()?->id,
@@ -182,20 +189,16 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
         if (!$activity) return $this->error('Activity not found', 404);
 
-        if ($activity->approval_status !== 'pending') {
-            return $this->error('Only pending activities can be rejected', 400);
-        }
-
         $validator = Validator::make($request->all(), [
             'rejection_reason' => 'required|string',
-            'type' => 'required|in:reject,rework'
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return $this->validationError($validator->errors());
         }
 
-        $status = $request->type === 'rework' ? 'rework' : 'rejected';
+        $status = $request->input('approval_status', $request->input('type', 'rejected'));
+        if ($status !== 'rework') $status = 'rejected';
 
         $activity->update([
             'approval_status' => $status,

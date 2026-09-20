@@ -17,12 +17,21 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        $status = $request->query('approval_status');
+        $approvalStatus = $request->query('approval_status');
+        $recordStatus = $request->query('status');
         
         $query = Article::with(['submittedBy', 'reviewedBy']);
         
-        if ($status) {
-            $query->where('approval_status', strtolower($status));
+        if ($recordStatus) {
+            $query->where('status', $recordStatus);
+        } else {
+            $query->where('status', 'active');
+        }
+        
+        if ($approvalStatus) {
+            $query->where('approval_status', strtolower($approvalStatus));
+        } else {
+            $query->where('approval_status', '!=', 'draft');
         }
 
         return $this->success($query->get(), 'Articles retrieved successfully');
@@ -36,7 +45,8 @@ class ArticleController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'author_name' => 'required|string|max:255',
-            'author_designation' => 'required|string|max:255',
+            'author_designation' => 'sometimes|required|string|max:255', // Legacy frontend support
+            'semester_of_study' => 'sometimes|required|string|max:255', // New DB field
             'author_institution' => 'required|string|max:255',
             'article_category' => 'required|string|max:255',
             'featured_image' => 'nullable|string', // Relaxed for testing
@@ -56,6 +66,12 @@ class ArticleController extends Controller
 
         $data = $request->all();
         
+        // Handle frontend payload still sending author_designation
+        if (isset($data['author_designation'])) {
+            $data['semester_of_study'] = $data['author_designation'];
+            unset($data['author_designation']);
+        }
+
         if (isset($data['status'])) {
             $data['status'] = strtolower($data['status']);
         }
@@ -69,7 +85,7 @@ class ArticleController extends Controller
         }
 
         $data['submitted_by'] = $request->user()?->id;
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
 
         $article = Article::create($data);
 
@@ -99,6 +115,7 @@ class ArticleController extends Controller
             'title' => 'sometimes|required|string|max:255',
             'author_name' => 'sometimes|required|string|max:255',
             'author_designation' => 'sometimes|required|string|max:255',
+            'semester_of_study' => 'sometimes|required|string|max:255',
             'author_institution' => 'sometimes|required|string|max:255',
             'article_category' => 'sometimes|required|string|max:255',
             'featured_image' => 'nullable|string',
@@ -118,6 +135,12 @@ class ArticleController extends Controller
 
         $data = $request->all();
         
+        // Handle frontend payload still sending author_designation
+        if (isset($data['author_designation'])) {
+            $data['semester_of_study'] = $data['author_designation'];
+            unset($data['author_designation']);
+        }
+
         if (isset($data['status'])) {
             $data['status'] = strtolower($data['status']);
         }
@@ -130,7 +153,7 @@ class ArticleController extends Controller
         }
 
         // Revert to draft upon update
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
         $data['submitted_by'] = $request->user()?->id;
 
         $article->update($data);
@@ -180,10 +203,6 @@ class ArticleController extends Controller
         $article = Article::find($id);
         if (!$article) return $this->error('Article not found', 404);
 
-        if ($article->approval_status !== 'pending') {
-            return $this->error('Only pending records can be approved.', 400);
-        }
-
         $article->update([
             'approval_status' => 'approved',
             'reviewed_by' => $request->user()?->id,
@@ -202,8 +221,7 @@ class ArticleController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'rejection_reason' => 'required|string',
-            'type' => 'required|in:reject,rework'
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return $this->validationError($validator->errors());
@@ -212,11 +230,8 @@ class ArticleController extends Controller
         $article = Article::find($id);
         if (!$article) return $this->error('Article not found', 404);
 
-        if ($article->approval_status !== 'pending') {
-            return $this->error('Only pending records can be rejected or sent for rework.', 400);
-        }
-
-        $status = $request->type === 'rework' ? 'rework' : 'rejected';
+        $status = $request->input('approval_status', $request->input('type', 'rejected'));
+        if ($status !== 'rework') $status = 'rejected';
 
         $article->update([
             'approval_status' => $status,

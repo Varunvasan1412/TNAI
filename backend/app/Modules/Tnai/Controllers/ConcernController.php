@@ -6,11 +6,80 @@ use App\Http\Controllers\Controller;
 use App\Modules\Tnai\Models\Concern;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use App\Traits\ApiResponse;
 
 class ConcernController extends Controller
 {
     use ApiResponse;
+
+    /**
+     * Send OTP for Voice Your Concern (Public endpoint)
+     */
+    public function sendOtp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->validationError($validator->errors());
+        }
+
+        $otp = rand(100000, 999999);
+
+        DB::table('concern_otps')->where('email', $request->email)->delete();
+
+        DB::table('concern_otps')->insert([
+            'email' => $request->email,
+            'otp' => $otp,
+            'expires_at' => now()->addMinutes(10),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        Mail::raw("Your OTP for submitting the Voice Your Concern form is: $otp. It is valid for 10 minutes.", function ($message) use ($request) {
+            $message->to($request->email)->subject('Voice Your Concern OTP');
+        });
+
+        return $this->success(null, 'OTP sent successfully to your email.');
+    }
+
+    /**
+     * Resend OTP for Voice Your Concern (Public endpoint)
+     */
+    public function resendOtp(Request $request)
+    {
+        return $this->sendOtp($request);
+    }
+
+    /**
+     * Verify OTP (Public endpoint)
+     */
+    public function verifyOtp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'otp' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->validationError($validator->errors());
+        }
+
+        $otpRecord = DB::table('concern_otps')->where('email', $request->email)->first();
+        
+        if (!$otpRecord || $otpRecord->otp !== $request->otp) {
+            return $this->error('Invalid OTP', 400);
+        }
+
+        if (now()->greaterThan($otpRecord->expires_at)) {
+            return $this->error('OTP has expired', 400);
+        }
+
+        return $this->success(null, 'OTP verified successfully.');
+    }
 
     /**
      * Submit a new concern (Public / Member endpoint)
@@ -20,13 +89,13 @@ class ConcernController extends Controller
         $validator = Validator::make($request->all(), [
             'member_name' => 'required|string|max:255',
             'tnai_membership_number' => 'required|string|max:255',
-            'snai_membership_number' => 'required|string|max:255',
+            'snai_membership_number' => 'nullable|string|max:255',
             'email' => 'required|email|max:255',
-            'mobile_number' => 'required|string|max:20',
+            'mobile_number' => 'nullable', // Removed string constraint entirely
             'institution' => 'nullable|string|max:255',
             'branch_zone' => 'nullable|string|max:255',
-            'concern_category' => 'required|string|max:255',
-            'subject' => 'required|string|max:255',
+            'concern_category' => 'nullable|string|max:255',
+            'subject' => 'nullable|string|max:255',
             'description' => 'required|string',
             'attachment' => 'required|string', // Relaxed to string for easy testing
         ]);
@@ -36,6 +105,14 @@ class ConcernController extends Controller
         }
 
         $data = $request->all();
+
+        // Map old frontend fields to new database schema fields
+        if (isset($data['snai_membership_number'])) {
+            $data['aadhar_number'] = $data['snai_membership_number'];
+        }
+        if (isset($data['subject'])) {
+            $data['title'] = $data['subject'];
+        }
 
         if ($request->hasFile('attachment')) {
             $data['attachment'] = $request->file('attachment')->store('concerns', 'public');

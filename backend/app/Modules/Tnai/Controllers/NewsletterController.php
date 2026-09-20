@@ -17,12 +17,21 @@ class NewsletterController extends Controller
      */
     public function index(Request $request)
     {
-        $status = $request->query('approval_status');
+        $approvalStatus = $request->query('approval_status');
+        $recordStatus = $request->query('status');
         
         $query = Newsletter::with(['submittedBy', 'reviewedBy']);
+
+        if ($recordStatus) {
+            $query->where('status', $recordStatus);
+        } else {
+            $query->where('status', 'active');
+        }
         
-        if ($status) {
-            $query->where('approval_status', strtolower($status));
+        if ($approvalStatus) {
+            $query->where('approval_status', strtolower($approvalStatus));
+        } else {
+            $query->where('approval_status', '!=', 'draft');
         }
 
         return $this->success($query->get(), 'Newsletters retrieved successfully');
@@ -64,7 +73,7 @@ class NewsletterController extends Controller
         }
 
         $data['submitted_by'] = $request->user()?->id;
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
 
         $newsletter = Newsletter::create($data);
 
@@ -120,7 +129,7 @@ class NewsletterController extends Controller
         }
 
         // Updating a record reverts it to draft
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
         $data['submitted_by'] = $request->user()?->id;
 
         $newsletter->update($data);
@@ -170,10 +179,6 @@ class NewsletterController extends Controller
         $newsletter = Newsletter::find($id);
         if (!$newsletter) return $this->error('Newsletter not found', 404);
 
-        if ($newsletter->approval_status !== 'pending') {
-            return $this->error('Only pending records can be approved.', 400);
-        }
-
         $newsletter->update([
             'approval_status' => 'approved',
             'reviewed_by' => $request->user()?->id,
@@ -192,8 +197,7 @@ class NewsletterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'rejection_reason' => 'required|string',
-            'type' => 'required|in:reject,rework'
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return $this->validationError($validator->errors());
@@ -202,11 +206,8 @@ class NewsletterController extends Controller
         $newsletter = Newsletter::find($id);
         if (!$newsletter) return $this->error('Newsletter not found', 404);
 
-        if ($newsletter->approval_status !== 'pending') {
-            return $this->error('Only pending records can be rejected or sent for rework.', 400);
-        }
-
-        $status = $request->type === 'rework' ? 'rework' : 'rejected';
+        $status = $request->input('approval_status', $request->input('type', 'rejected'));
+        if ($status !== 'rework') $status = 'rejected';
 
         $newsletter->update([
             'approval_status' => $status,

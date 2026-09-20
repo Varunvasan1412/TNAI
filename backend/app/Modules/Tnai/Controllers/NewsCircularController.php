@@ -24,8 +24,16 @@ class NewsCircularController extends Controller
         // if (!$request->user()) {
         //     $query->where('approval_status', 'approved')->where('status', 'active');
         // } else {
+            if ($request->has('status')) {
+                $query->where('status', $request->status);
+            } else {
+                $query->where('status', 'active');
+            }
+
             if ($request->has('approval_status')) {
                 $query->where('approval_status', $request->approval_status);
+            } else {
+                $query->where('approval_status', '!=', 'draft');
             }
         // }
 
@@ -80,7 +88,7 @@ class NewsCircularController extends Controller
         }
 
         $data['submitted_by'] = $request->user()?->id;
-        $data['approval_status'] = 'draft';
+        $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
 
         $item = NewsCircular::create($data);
 
@@ -136,7 +144,7 @@ class NewsCircularController extends Controller
 
         // Send back to draft if modified
         if ($item->approval_status === 'approved') {
-            $data['approval_status'] = 'draft';
+            $data['approval_status'] = (isset($data['status']) && strtolower($data['status']) === 'active') ? 'pending' : 'draft';
             $data['reviewed_by'] = null;
             $data['reviewed_date'] = null;
         }
@@ -174,10 +182,6 @@ class NewsCircularController extends Controller
         $item = NewsCircular::find($id);
         if (!$item) return $this->error('Record not found', 404);
 
-        if ($item->approval_status !== 'pending') {
-            return $this->error('Only pending items can be approved', 400);
-        }
-
         $item->update([
             'approval_status' => 'approved',
             'reviewed_by' => $request->user()?->id,
@@ -196,8 +200,7 @@ class NewsCircularController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'rejection_reason' => 'required|string',
-            'status_type' => 'required|in:rejected,rework'
-        ]);
+            ]);
 
         if ($validator->fails()) {
             return $this->validationError($validator->errors());
@@ -207,7 +210,7 @@ class NewsCircularController extends Controller
         if (!$item) return $this->error('Record not found', 404);
 
         $item->update([
-            'approval_status' => $request->status_type,
+            'approval_status' => $request->input('approval_status', $request->input('type', 'rejected')),
             'reviewed_by' => $request->user()?->id,
             'reviewed_date' => now(),
             'rejection_reason' => $request->rejection_reason,

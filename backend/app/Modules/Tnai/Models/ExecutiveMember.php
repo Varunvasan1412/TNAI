@@ -3,8 +3,8 @@
 namespace App\Modules\Tnai\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\User;
 
 class ExecutiveMember extends Model
 {
@@ -13,7 +13,7 @@ class ExecutiveMember extends Model
     protected $fillable = [
         'name',
         'designation',
-        'position',
+        'currently_employed_in',
         'profile_photo',
         'qualification',
         'professional_experience',
